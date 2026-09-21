@@ -2,8 +2,12 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - CheckPoint
+  - Interactable
+  - Hazard
   layers:
   - Default
   - TransparentFX
@@ -11,17 +15,17 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - PlayerAttack
+  - EnemyAttack
+  - PlayerProjectile
+  - EnemyProjectile
+  - Ground
+  - OneWayPlatform
+  - Hazard
+  - Interactable
+  - Trigger
   - 
   - 
   - 
@@ -41,3 +45,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2453439131
+    locked: 0
+  - name: EnvironmentBack
+    uniqueID: 1334980413
+    locked: 0
+  - name: Character
+    uniqueID: 1918527705
+    locked: 0
+  - name: Effect
+    uniqueID: 2468278681
+    locked: 0
+  - name: EnvironmentFront
+    uniqueID: 2474048271
+    locked: 0
+  - name: UI
+    uniqueID: 2420769363
+    locked: 0
+  m_RenderingLayers:
+  - Default
