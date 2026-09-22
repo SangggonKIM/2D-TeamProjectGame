@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDamageable
@@ -7,7 +8,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected float CurrentHp { get; private set; }
     protected EnemyStateMachine StateMachine { get; private set; }
-    protected EnemyCombat Combat { get; private set; };
+    protected EnemyCombat Combat { get; private set; }
     protected EnemyAnimation Animation { get; private set; }
     protected EnemyMove Move { get; private set; }
 
@@ -20,11 +21,16 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         CurrentHp = _data.MaxHp;
     }
 
-    public bool TakeDamage(float damage)
+    protected virtual void Update()
+    {
+        StateMachine.UpdateState();
+    }
+
+    public bool TakeDamage(HitData hitData)
     {
         if (CurrentHp <= 0f) return false;
 
-        CurrentHp -= damage;
+        CurrentHp -= hitData.Damage;
 
         if (CurrentHp <= 0f)
         {
