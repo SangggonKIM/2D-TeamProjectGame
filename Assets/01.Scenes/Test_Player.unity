@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 481382868}
   - component: {fileID: 481382867}
   - component: {fileID: 481382866}
+  - component: {fileID: 481382871}
   - component: {fileID: 481382870}
   m_Layer: 0
   m_Name: Player
@@ -300,6 +301,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   _speed: 5
   _jumpForce: 7
+--- !u!114 &481382871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481382865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4721ce6c3c0526d48a12a4c3ebfa3630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputHandler
 --- !u!1 &1215911936
 GameObject:
   m_ObjectHideFlags: 0
