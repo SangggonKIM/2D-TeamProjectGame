@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,32 +9,56 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _feetPosition;
     [SerializeField] private float _checkRadius;
 
+    [Header("Dodge Settings")]
+    [SerializeField] private float _dodgeDistance;
+
+    [SerializeField] private float _dodgeDuration;
+    [SerializeField] private float _dodgeCooldown;
+    [SerializeField] private AnimationCurve _dodgeSpeedCurve;
+
+
+    private bool _isDodging;
+
+    private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody2D;
     private PlayerInputHandler _inputHandler;
 
 
     private void Awake()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _inputHandler = GetComponent<PlayerInputHandler>();
     }
 
     private void Update()
     {
-        if (_inputHandler.IsJumpKeyDown && IsGrounded())
+        if (_isDodging) return;
+
+        if (IsGrounded())
         {
-            _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            if (_inputHandler.IsJumpKeyDown)
+            {
+                _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            }
         }
     }
 
     private void FixedUpdate()
     {
+        if (_isDodging) return;
+
+        MoveX();
+    }
+
+    private void MoveX()
+    {
         _rigidbody2D.linearVelocity = new Vector2(_inputHandler.MoveInputX * _speed, _rigidbody2D.linearVelocity.y);
+        if (Mathf.Abs(_inputHandler.MoveInputX) > 0.01f) _spriteRenderer.flipX = _inputHandler.MoveInputX < 0;
     }
 
     private bool IsGrounded()
     {
-        // 1. 발밑 위치에 바닥/발판 레이어가 닿아있는지 확인
         bool isTouchingGround = Physics2D.OverlapCircle(
             _feetPosition.position,
             _checkRadius,
