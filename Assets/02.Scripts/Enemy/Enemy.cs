@@ -35,11 +35,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         if (CurrentHp <= 0f)
         {
             CurrentHp = 0f;
-            StateMachine.ChangeState(new DeadState(this));
+            // StateMachine.ChangeState(new DeadState(this));
             return true;
         }
 
-        StateMachine.ChangeState(new HitState(this));
+        // StateMachine.ChangeState(new HitState(this));
         return true;
     }
 }
