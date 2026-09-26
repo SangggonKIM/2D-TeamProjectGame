@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: cb63fb95a95ad33488ae8896b8c16e3b
+guid: 9f0d21f2f54dbea40969acb9b8c8341f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5352813748143334111
-    second: PlayerEx_0
+      213: -5209597418172344763
+    second: CloudMultiple_0
   - first:
-      213: 1598462728437455102
-    second: PlayerEx_1
+      213: -6474125792158362699
+    second: CloudMultiple_1
   - first:
-      213: 9006896720057799297
-    second: PlayerEx_2
+      213: 2851867440330678377
+    second: CloudMultiple_2
+  - first:
+      213: 7876909126050380896
+    second: CloudMultiple_3
+  - first:
+      213: -9103344196689224748
+    second: CloudMultiple_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerEx_0
+      name: CloudMultiple_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 45
-        width: 518
-        height: 908
+        x: 0
+        y: 453
+        width: 1328
+        height: 315
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd229e65eb3094a40800000000000000
-      internalID: 5352813748143334111
+      spriteID: 5469b03ffbac3b7b0800000000000000
+      internalID: -5209597418172344763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerEx_1
+      name: CloudMultiple_1
       rect:
         serializedVersion: 2
-        x: 539
-        y: 64
-        width: 500
-        height: 888
+        x: 14
+        y: 0
+        width: 2027
+        height: 750
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef8573be161ee2610800000000000000
-      internalID: 1598462728437455102
+      spriteID: 5b3d437b4e84726a0800000000000000
+      internalID: -6474125792158362699
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerEx_2
+      name: CloudMultiple_2
       rect:
         serializedVersion: 2
-        x: 1052
-        y: 65
-        width: 472
-        height: 887
+        x: 344
+        y: 727
+        width: 6
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,8 +184,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1821da7a8dceefc70800000000000000
-      internalID: 9006896720057799297
+      spriteID: 960a96fb35ed39720800000000000000
+      internalID: 2851867440330678377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloudMultiple_3
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 729
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06cf342dd17605d60800000000000000
+      internalID: 7876909126050380896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloudMultiple_4
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 722
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db99384fac6aa180800000000000000
+      internalID: -9103344196689224748
       vertices: []
       indices: 
       edges: []
@@ -198,9 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PlayerEx_0: 5352813748143334111
-      PlayerEx_1: 1598462728437455102
-      PlayerEx_2: 9006896720057799297
+      CloudMultiple_0: -5209597418172344763
+      CloudMultiple_1: -6474125792158362699
+      CloudMultiple_2: 2851867440330678377
+      CloudMultiple_3: 7876909126050380896
+      CloudMultiple_4: -9103344196689224748
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
