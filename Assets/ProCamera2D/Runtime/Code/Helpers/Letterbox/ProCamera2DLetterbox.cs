@@ -25,7 +25,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 if (_material != null) return _material;
 
-                _material = new Material(Shader.Find("Hidden/ProCamera2D/Letterbox")) {hideFlags = HideFlags.HideAndDontSave};
+                _material = new Material(Shader.Find("Hidden/ProCamera2D/Letterbox")) { hideFlags = HideFlags.HideAndDontSave };
                 return _material;
             }
         }
@@ -33,14 +33,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         private void OnEnable()
         {
             _previousAmount = float.MaxValue;
-            
-            if(TopPropertyID == 0)
+
+            if (TopPropertyID == 0)
                 TopPropertyID = Shader.PropertyToID("_Top");
-            
-            if(BottomPropertyID == 0)
+
+            if (BottomPropertyID == 0)
                 BottomPropertyID = Shader.PropertyToID("_Bottom");
-            
-            if(ColorPropertyID == 0)
+
+            if (ColorPropertyID == 0)
                 ColorPropertyID = Shader.PropertyToID("_Color");
         }
 

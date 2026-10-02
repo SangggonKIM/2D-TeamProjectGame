@@ -6,12 +6,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
     [HelpURLAttribute("http://www.procamera2d.com/user-guide/trigger-influence/")]
     public class ProCamera2DTriggerInfluence : BaseTrigger
     {
-		public enum TriggerInfluenceMode
-		{
-			BothAxis,
-			HorizontalAxis,
-			VerticalAxis
-		}
+        public enum TriggerInfluenceMode
+        {
+            BothAxis,
+            HorizontalAxis,
+            VerticalAxis
+        }
 
         public const string TriggerName = "Influence Trigger";
 
@@ -22,7 +22,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         [RangeAttribute(0, 1)]
         public float ExclusiveInfluencePercentage = .25f;
 
-		public TriggerInfluenceMode Mode;
+        public TriggerInfluenceMode Mode;
 
         Vector2 _influence;
         Vector2 _velocity;
@@ -67,15 +67,15 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 var vectorFromPointToFocus = new Vector2(Vector3H(ProCamera2D.TargetsMidPoint) + Vector3H(ProCamera2D.TargetsMidPoint) - Vector3H(ProCamera2D.PreviousTargetsMidPoint), Vector3V(ProCamera2D.TargetsMidPoint) + Vector3V(ProCamera2D.TargetsMidPoint) - Vector3V(ProCamera2D.PreviousTargetsMidPoint)) - new Vector2(Vector3H(FocusPoint.position), Vector3V(FocusPoint.position));
                 if (distancePercentage == 0)
                 {
-					var exclusiveTargetPosition = VectorHV(Vector3H(FocusPoint.position), Vector3V(FocusPoint.position));
+                    var exclusiveTargetPosition = VectorHV(Vector3H(FocusPoint.position), Vector3V(FocusPoint.position));
                     ProCamera2D.ExclusiveTargetPosition = Vector3.SmoothDamp(_tempExclusivePoint, exclusiveTargetPosition, ref _exclusivePointVelocity, InfluenceSmoothness);
                     _tempExclusivePoint = ProCamera2D.ExclusiveTargetPosition.Value;
                     _influence = -vectorFromPointToFocus * (1 - distancePercentage);
 
-					if (Mode == TriggerInfluenceMode.HorizontalAxis)
-						_influence.y = 0;
-					else if (Mode == TriggerInfluenceMode.VerticalAxis)
-						_influence.x = 0;
+                    if (Mode == TriggerInfluenceMode.HorizontalAxis)
+                        _influence.y = 0;
+                    else if (Mode == TriggerInfluenceMode.VerticalAxis)
+                        _influence.x = 0;
                     ProCamera2D.ApplyInfluence(_influence);
                 }
                 else
@@ -85,10 +85,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                     _influence = Vector2.SmoothDamp(_influence, -vectorFromPointToFocus * (1 - distancePercentage), ref _velocity, InfluenceSmoothness, Mathf.Infinity, Time.deltaTime);
 
-					if (Mode == TriggerInfluenceMode.HorizontalAxis)
-						_influence.y = 0;
-					else if (Mode == TriggerInfluenceMode.VerticalAxis)
-						_influence.x = 0;
+                    if (Mode == TriggerInfluenceMode.HorizontalAxis)
+                        _influence.y = 0;
+                    else if (Mode == TriggerInfluenceMode.VerticalAxis)
+                        _influence.x = 0;
                     ProCamera2D.ApplyInfluence(_influence);
                     _tempExclusivePoint = VectorHV(Vector3H(ProCamera2D.CameraTargetPosition), Vector3V(ProCamera2D.CameraTargetPosition)) + VectorHV(Vector3H(ProCamera2D.ParentPosition), Vector3V(ProCamera2D.ParentPosition));
                 }
@@ -112,7 +112,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             }
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         override protected void DrawGizmos()
         {
             _exclusiveInfluencePercentage = ExclusiveInfluencePercentage;
@@ -131,6 +131,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             else
                 Gizmos.DrawIcon(VectorHVD(Vector3H(transform.position), Vector3V(transform.position), cameraDepthOffset), "ProCamera2D/gizmo_icon_influence.png", false);
         }
-        #endif
+#endif
     }
 }

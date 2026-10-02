@@ -16,15 +16,15 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         [HideInInspector]
         public ProCamera2DRails ProCamera2DRails;
 
-        public TriggerRailsMode Mode; 
+        public TriggerRailsMode Mode;
 
         public float TransitionDuration = 1f;
-        
+
         void Start()
         {
             if (ProCamera2D == null)
                 return;
-                
+
             if (ProCamera2DRails == null)
 #if UNITY_6000_0_OR_NEWER
                 ProCamera2DRails = FindAnyObjectByType<ProCamera2DRails>();
@@ -39,14 +39,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         protected override void EnteredTrigger()
         {
             base.EnteredTrigger();
-            
-            if(Mode == TriggerRailsMode.Enable)
+
+            if (Mode == TriggerRailsMode.Enable)
                 ProCamera2DRails.EnableTargets(TransitionDuration);
             else
                 ProCamera2DRails.DisableTargets(TransitionDuration);
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         override protected void DrawGizmos()
         {
             base.DrawGizmos();
@@ -55,12 +55,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             Gizmos.DrawIcon(
                 VectorHVD(
-                    Vector3H(transform.position), 
-                    Vector3V(transform.position), 
-                    cameraDepthOffset), 
-                Mode == TriggerRailsMode.Enable ? "ProCamera2D/gizmo_icon_rails_enable.png" : "ProCamera2D/gizmo_icon_rails_disable.png", 
+                    Vector3H(transform.position),
+                    Vector3V(transform.position),
+                    cameraDepthOffset),
+                Mode == TriggerRailsMode.Enable ? "ProCamera2D/gizmo_icon_rails_enable.png" : "ProCamera2D/gizmo_icon_rails_disable.png",
                 false);
         }
-        #endif
+#endif
     }
 }

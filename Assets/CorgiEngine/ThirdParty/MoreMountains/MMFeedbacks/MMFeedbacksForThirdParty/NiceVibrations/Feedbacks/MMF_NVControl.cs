@@ -7,25 +7,25 @@ using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.FeedbacksForThirdParty
 {
-	/// <summary>
-	/// Add this feedback to interact with haptics at a global level, stopping them all, enabling or disabling them, adjusting their global level or initializing/release the haptic engine
-	/// </summary>
-	[AddComponentMenu("")]
-	[System.Serializable]
-	#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    /// <summary>
+    /// Add this feedback to interact with haptics at a global level, stopping them all, enabling or disabling them, adjusting their global level or initializing/release the haptic engine
+    /// </summary>
+    [AddComponentMenu("")]
+    [System.Serializable]
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 	[FeedbackPath("Haptics/Haptic Control")]
-	#endif
-	[MovedFrom(false, null, "MoreMountains.Feedbacks.NiceVibrations")]
-	[FeedbackHelp("Add this feedback to interact with haptics at a global level, stopping them all, enabling or disabling them, adjusting their global level or initializing/release the haptic engine.")]
-	public class MMF_NVControl : MMF_Feedback
-	{
-		#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+#endif
+    [MovedFrom(false, null, "MoreMountains.Feedbacks.NiceVibrations")]
+    [FeedbackHelp("Add this feedback to interact with haptics at a global level, stopping them all, enabling or disabling them, adjusting their global level or initializing/release the haptic engine.")]
+    public class MMF_NVControl : MMF_Feedback
+    {
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 		/// a static bool used to disable all feedbacks of this type at once
 		public static bool FeedbackTypeAuthorized = true;
-		#if UNITY_EDITOR
+#if UNITY_EDITOR
 		public override Color FeedbackColor { get { return MMFeedbacksInspectorColors.HapticsColor; } }
 		public override string RequiredTargetText { get { return ControlType.ToString();  } }
-		#endif
+#endif
     
 		public enum ControlTypes { Stop, EnableHaptics, DisableHaptics, AdjustHapticsLevel, Initialize, Release }
 
@@ -73,8 +73,8 @@ namespace MoreMountains.FeedbacksForThirdParty
 					break;
 			}
 		}
-		#else
-		protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f) { }
-		#endif
-	}    
+#else
+        protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f) { }
+#endif
+    }
 }

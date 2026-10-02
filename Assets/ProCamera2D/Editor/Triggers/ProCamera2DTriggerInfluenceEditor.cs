@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Com.LuisPedroFonseca.ProCamera2D
 {
-	[CustomEditor(typeof(ProCamera2DTriggerInfluence))]
-	[CanEditMultipleObjects]
+    [CustomEditor(typeof(ProCamera2DTriggerInfluence))]
+    [CanEditMultipleObjects]
     public class ProCamera2DTriggerInfluenceEditor : Editor
     {
         MonoScript _script;
@@ -19,9 +19,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             var proCamera2DTriggerInfluence = (ProCamera2DTriggerInfluence)target;
 
-            if(proCamera2DTriggerInfluence.ProCamera2D == null)
+            if (proCamera2DTriggerInfluence.ProCamera2D == null)
                 EditorGUILayout.HelpBox("ProCamera2D is not set.", MessageType.Error, true);
-            
+
             serializedObject.Update();
 
             // Show script link
@@ -31,11 +31,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             // ProCamera2D
             _tooltip = new GUIContent("Pro Camera 2D", "");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);
 
             // Update interval
             _tooltip = new GUIContent("Update Interval", "Every X seconds detect collision. Smaller frequencies are more precise but also require more processing.");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("UpdateInterval"), _tooltip);            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("UpdateInterval"), _tooltip);
 
             if (proCamera2DTriggerInfluence.UpdateInterval <= 0.01f)
                 proCamera2DTriggerInfluence.UpdateInterval = 0.01f;
@@ -71,9 +71,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             }
             EditorGUILayout.EndHorizontal();
 
-			// Mode
-			_tooltip = new GUIContent("Influence Mode", "Choose what axis the influence affects");
-			EditorGUILayout.PropertyField(serializedObject.FindProperty("Mode"), _tooltip);
+            // Mode
+            _tooltip = new GUIContent("Influence Mode", "Choose what axis the influence affects");
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("Mode"), _tooltip);
 
             serializedObject.ApplyModifiedProperties();
         }

@@ -54,22 +54,22 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             var animsCount = 0;
             if (UseLeftBoundary)
                 animsCount++;
-            else if (!UseLeftBoundary && NumericBoundaries.UseLeftBoundary && UseRightBoundary && RightBoundary < NumericBoundaries.TargetLeftBoundary) 
+            else if (!UseLeftBoundary && NumericBoundaries.UseLeftBoundary && UseRightBoundary && RightBoundary < NumericBoundaries.TargetLeftBoundary)
                 animsCount++;
 
             if (UseRightBoundary)
                 animsCount++;
-            else if (!UseRightBoundary && NumericBoundaries.UseRightBoundary && UseLeftBoundary && LeftBoundary > NumericBoundaries.TargetRightBoundary) 
+            else if (!UseRightBoundary && NumericBoundaries.UseRightBoundary && UseLeftBoundary && LeftBoundary > NumericBoundaries.TargetRightBoundary)
                 animsCount++;
 
             if (UseTopBoundary)
                 animsCount++;
-            else if (!UseTopBoundary && NumericBoundaries.UseTopBoundary && UseBottomBoundary && BottomBoundary > NumericBoundaries.TargetTopBoundary) 
+            else if (!UseTopBoundary && NumericBoundaries.UseTopBoundary && UseBottomBoundary && BottomBoundary > NumericBoundaries.TargetTopBoundary)
                 animsCount++;
 
             if (UseBottomBoundary)
                 animsCount++;
-            else if (!UseBottomBoundary && NumericBoundaries.UseBottomBoundary && UseTopBoundary && TopBoundary < NumericBoundaries.TargetBottomBoundary) 
+            else if (!UseBottomBoundary && NumericBoundaries.UseBottomBoundary && UseTopBoundary && TopBoundary < NumericBoundaries.TargetBottomBoundary)
                 animsCount++;
 
             return animsCount;
@@ -149,7 +149,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                 NumericBoundaries.TopBoundaryAnimRoutine = NumericBoundaries.StartCoroutine(TopTransitionRoutine(TransitionDuration));
             }
-            else if (!UseTopBoundary && NumericBoundaries.UseTopBoundary && UseBottomBoundary && BottomBoundary > NumericBoundaries.TargetTopBoundary) 
+            else if (!UseTopBoundary && NumericBoundaries.UseTopBoundary && UseBottomBoundary && BottomBoundary > NumericBoundaries.TargetTopBoundary)
             {
                 NumericBoundaries.UseTopBoundary = true;
                 UseTopBoundary = true;
@@ -175,7 +175,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                 NumericBoundaries.BottomBoundaryAnimRoutine = NumericBoundaries.StartCoroutine(BottomTransitionRoutine(TransitionDuration));
             }
-            else if (!UseBottomBoundary && NumericBoundaries.UseBottomBoundary && UseTopBoundary && TopBoundary < NumericBoundaries.TargetBottomBoundary) 
+            else if (!UseBottomBoundary && NumericBoundaries.UseBottomBoundary && UseTopBoundary && TopBoundary < NumericBoundaries.TargetBottomBoundary)
             {
                 NumericBoundaries.UseBottomBoundary = true;
                 UseBottomBoundary = true;

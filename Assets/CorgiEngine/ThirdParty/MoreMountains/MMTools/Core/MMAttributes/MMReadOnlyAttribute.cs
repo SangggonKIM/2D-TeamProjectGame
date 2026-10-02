@@ -4,6 +4,6 @@ using UnityEditor;
 #endif
 
 namespace MoreMountains.Tools
-{	
-	public class MMReadOnlyAttribute : PropertyAttribute { }
+{
+    public class MMReadOnlyAttribute : PropertyAttribute { }
 }

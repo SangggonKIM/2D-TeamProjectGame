@@ -11,7 +11,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         public ProCamera2DNumericBoundaries NumericBoundaries;
 
         public bool AreBoundariesRelative = true;
-        
+
         public bool UseTopBoundary = true;
         public float TopBoundary = 10;
         public bool UseBottomBoundary = true;
@@ -82,7 +82,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemovePositionOverrider(this);
         }
 
@@ -90,7 +90,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (ProCamera2D == null)
                 return;
-            
+
             if (NumericBoundaries == null)
             {
 #if UNITY_6000_0_OR_NEWER
@@ -148,12 +148,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 StartCoroutine(TurnOffPreviousTrigger(NumericBoundaries.CurrentBoundariesTrigger));
 
             if ((NumericBoundaries.CurrentBoundariesTrigger != null &&
-                 NumericBoundaries.CurrentBoundariesTrigger._instanceID != _instanceID) || 
-                NumericBoundaries.CurrentBoundariesTrigger == null) 
+                 NumericBoundaries.CurrentBoundariesTrigger._instanceID != _instanceID) ||
+                NumericBoundaries.CurrentBoundariesTrigger == null)
             {
                 NumericBoundaries.CurrentBoundariesTrigger = this;
 
-                StartCoroutine (Transition ());
+                StartCoroutine(Transition());
             }
         }
 
@@ -219,7 +219,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 NumericBoundaries.UseRightBoundary = false;
                 yield break;
             }
-            
+
             var position = transform.position;
             var topBoundary = AreBoundariesRelative ? position.y + TopBoundary : TopBoundary;
             var bottomBoundary = AreBoundariesRelative ? position.y + BottomBoundary : BottomBoundary;
@@ -257,7 +257,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // Zoom
             if (ChangeZoom && _initialCamSize / TargetZoom != ProCamera2D.ScreenSizeInWorldCoordinates.y * .5f)
                 ProCamera2D.UpdateScreenSize(_initialCamSize / TargetZoom, ZoomSmoothness, TransitionEaseType);
-            
+
 
             // Move camera "manually"
             if (_boundsAnim.GetAnimsCount() > 1)
@@ -314,7 +314,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 verticalPos = NumericBoundaries.TopBoundary - ProCamera2D.ScreenSizeInWorldCoordinates.y / 2;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         protected override void DrawGizmos()
         {
             base.DrawGizmos();
@@ -351,7 +351,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (ProCamera2D == null)
                 return;
-            
+
             float cameraDepthOffset = Vector3D(ProCamera2D.transform.localPosition) + Mathf.Abs(Vector3D(ProCamera2D.transform.localPosition)) * Vector3D(ProCamera2D.transform.forward);
             var cameraCenter = VectorHVD(Vector3H(transform.position), Vector3V(transform.position), cameraDepthOffset);
             var cameraDimensions = Utils.GetScreenSizeInWorldCoords(ProCamera2D.GetComponent<Camera>(), Mathf.Abs(Vector3D(ProCamera2D.transform.localPosition)));
@@ -383,6 +383,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 Utils.DrawArrowForGizmo(cameraCenter, VectorHV(_targetLeftBoundary - Vector3H(transform.position), 0));
             }
         }
-        #endif
+#endif
     }
 }

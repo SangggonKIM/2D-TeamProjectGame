@@ -30,7 +30,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         List<PC2DEditorExtension> _extensions;
         List<PC2DEditorTrigger> _triggers;
-        
+
         string hAxis = "";
         string vAxis = "";
 
@@ -45,7 +45,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             if (proCamera2D.GameCamera == null)
                 proCamera2D.GameCamera = proCamera2D.GetComponent<Camera>();
-            
+
             // Show correct axis name
             switch (proCamera2D.Axis)
             {
@@ -78,7 +78,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 rect.y += 2;
                 var element = _targetsList.serializedProperty.GetArrayElementAtIndex(index);
 
-				EditorGUI.PrefixLabel(new Rect(rect.x, rect.y, 65, 10), new GUIContent("Transform", "The target transform"));
+                EditorGUI.PrefixLabel(new Rect(rect.x, rect.y, 65, 10), new GUIContent("Transform", "The target transform"));
                 EditorGUI.PropertyField(new Rect(
                         rect.x + 65,
                         rect.y,
@@ -86,7 +86,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                         EditorGUIUtility.singleLineHeight),
                     element.FindPropertyRelative("TargetTransform"), GUIContent.none);
 
-				EditorGUI.PrefixLabel(new Rect(rect.x + 160, rect.y, 65, 10), new GUIContent("Offset", "Offset the camera position relative to this target"));
+                EditorGUI.PrefixLabel(new Rect(rect.x + 160, rect.y, 65, 10), new GUIContent("Offset", "Offset the camera position relative to this target"));
                 EditorGUI.PropertyField(new Rect(
                         rect.x + 200,
                         rect.y,
@@ -143,7 +143,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                             ExtType = scriptClass,
                             Component = proCamera2D.GetComponent(scriptClass) as BasePC2D
                         };
-                        
+
                         _extensions.Add(ext);
                     }
 
@@ -151,12 +151,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     if (triggerName != null)
                     {
                         var trig = new PC2DEditorTrigger()
-                            {
-                                TriggerName = triggerName.GetValue(null) as string,
-                                TriggerType = scriptClass,
-                                AllTriggers = FindObjectsByType(scriptClass, FindObjectsSortMode.None).ToList(),
-                                TriggerCurrentIndex = 0
-                            };
+                        {
+                            TriggerName = triggerName.GetValue(null) as string,
+                            TriggerType = scriptClass,
+                            AllTriggers = FindObjectsByType(scriptClass, FindObjectsSortMode.None).ToList(),
+                            TriggerCurrentIndex = 0
+                        };
 
                         _triggers.Add(trig);
                     }
@@ -169,13 +169,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
-            
+
             var proCamera2D = (ProCamera2D)target;
 
             serializedObject.Update();
-            
+
             EditorGUILayout.Space();
-            
+
             // Review prompt
             if (_showReviewMessage)
             {
@@ -209,7 +209,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             if (EditorGUIUtility.isProSkin)
                 style.normal.textColor = Color.white;
             GUI.Box(drop_area, "\nDROP CAMERA TARGETS HERE", style);
-            
+
             Undo.RecordObject(proCamera2D, "Added camera targets");
             switch (evt.type)
             {
@@ -231,7 +231,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                                 TargetTransform = ((GameObject)dragged_object).transform,
                                 TargetInfluence = 1f
                             };
-							
+
                             proCamera2D.CameraTargets.Add(newCameraTarget);
                             EditorUtility.SetDirty(proCamera2D);
                         }
@@ -269,7 +269,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             EditorGUILayout.PropertyField(serializedObject.FindProperty("CenterTargetOnStart"), _tooltip);
 
             AddSpace();
-            
+
 
 
 
@@ -395,9 +395,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 GUI.enabled = true;
                 AddSpace();
             }
-            
-            
-            
+
+
+
             // Ignore TimeScale
             _tooltip = new GUIContent("Ignore TimeScale", "If enabled, the camera will not be affected by the Time.timeScale. It will use Time.unscaledDeltaTime instead.");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("IgnoreTimeScale"), _tooltip);
@@ -406,7 +406,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
 
             // Divider
-            GUILayout.Box("", new GUILayoutOption[]{ GUILayout.ExpandWidth(true), GUILayout.Height(1) });
+            GUILayout.Box("", new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.Height(1) });
             GUILayout.Label("EXTENSIONS", EditorStyles.boldLabel);
             EditorGUILayout.Space();
 
@@ -447,7 +447,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // Divider
             EditorGUILayout.Space();
             GUI.color = Color.white;
-            GUILayout.Box("", new GUILayoutOption[]{ GUILayout.ExpandWidth(true), GUILayout.Height(1) });
+            GUILayout.Box("", new GUILayoutOption[] { GUILayout.ExpandWidth(true), GUILayout.Height(1) });
             GUILayout.Label("TRIGGERS", EditorStyles.boldLabel);
             EditorGUILayout.Space();
 

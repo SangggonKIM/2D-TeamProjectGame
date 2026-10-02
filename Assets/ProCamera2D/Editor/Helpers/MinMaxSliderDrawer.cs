@@ -29,7 +29,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     property.vector2Value = range;
                 }
             }
-            else {
+            else
+            {
                 EditorGUI.LabelField(position, label, "Use only with Vector2");
             }
         }

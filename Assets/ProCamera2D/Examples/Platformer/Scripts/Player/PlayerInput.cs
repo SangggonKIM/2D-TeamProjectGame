@@ -32,7 +32,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.Platformer
             {
                 currentSpeed = 0;
             }
-		
+
             // If player is touching the ground
             if ((_characterController.collisionFlags & CollisionFlags.Below) != 0)
             {
@@ -45,15 +45,15 @@ namespace Com.LuisPedroFonseca.ProCamera2D.Platformer
             }
 
             // Jump
-            if ((Input.GetKeyDown(KeyCode.W) || 
+            if ((Input.GetKeyDown(KeyCode.W) ||
                 Input.GetKeyDown(KeyCode.Space) ||
-                Input.GetKeyDown(KeyCode.UpArrow)) 
+                Input.GetKeyDown(KeyCode.UpArrow))
                 && totalJumps < jumpsAllowed)
             {
                 totalJumps++;
-                amountToMove.y = jumpHeight;	
+                amountToMove.y = jumpHeight;
             }
-		
+
             // Input
             var targetSpeed = Input.GetAxis("Horizontal") * runSpeed;
             currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
@@ -63,26 +63,26 @@ namespace Com.LuisPedroFonseca.ProCamera2D.Platformer
             {
                 amountToMove.z = -transform.position.z;
             }
-		
+
             // Set amount to move
             amountToMove.x = currentSpeed;
 
-            if(amountToMove.x != 0)
+            if (amountToMove.x != 0)
                 Body.localScale = new Vector2(Mathf.Sign(amountToMove.x) * Mathf.Abs(Body.localScale.x), Body.localScale.y);
 
             _characterController.Move(amountToMove * Time.deltaTime);
         }
-	
+
         // Increase n towards target by speed
         private float IncrementTowards(float n, float target, float a)
         {
             if (n == target)
             {
-                return n;	
+                return n;
             }
             else
             {
-                float dir = Mathf.Sign(target - n); 
+                float dir = Mathf.Sign(target - n);
                 n += a * Time.deltaTime * dir;
                 return (dir == Mathf.Sign(target - n)) ? n : target;
             }

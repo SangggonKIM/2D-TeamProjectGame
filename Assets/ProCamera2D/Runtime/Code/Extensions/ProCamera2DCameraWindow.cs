@@ -23,7 +23,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemovePositionDeltaChanger(this);
         }
 
@@ -33,7 +33,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (!enabled)
                 return originalDelta;
-            
+
             // Calculate the window rect
             _cameraWindowRectInWorldCoords = GetRectAroundTransf(CameraWindowRect, ProCamera2D.ScreenSizeInWorldCoordinates, _transform, IsRelativeSizeAndPosition);
 
@@ -77,7 +77,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             return new Rect(rectPositionX, rectPositionY, finalRectSize.x, finalRectSize.y);
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         override protected void DrawGizmos()
         {
             base.DrawGizmos();
@@ -91,6 +91,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             var cameraRect = GetRectAroundTransf(CameraWindowRect, cameraDimensions, transform, IsRelativeSizeAndPosition);
             Gizmos.DrawWireCube(VectorHVD(cameraRect.x + cameraRect.width / 2, cameraRect.y + cameraRect.height / 2, cameraDepthOffset), VectorHV(cameraRect.width, cameraRect.height));
         }
-        #endif
+#endif
     }
 }

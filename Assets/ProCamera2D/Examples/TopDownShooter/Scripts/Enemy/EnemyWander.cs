@@ -15,7 +15,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
         Vector3 _startingPos;
         float _startingTime;
 
-        void Awake ()
+        void Awake()
         {
             _navMeshAgent = this.GetComponentInChildren<NavMeshAgent>();
             _startingPos = _navMeshAgent.transform.position;
@@ -35,13 +35,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
 
         IEnumerator CheckAgentPosition()
         {
-            while(true)
+            while (true)
             {
                 if (_navMeshAgent.remainingDistance <= WaypointOffset && !_hasReachedDestination)
                 {
                     _hasReachedDestination = true;
 
-                    if(Time.time - _startingTime >= WanderDuration && WanderDuration > 0)
+                    if (Time.time - _startingTime >= WanderDuration && WanderDuration > 0)
                     {
                         // Dispatch complete event
                         Debug.Log("Stopped wandering");
@@ -72,12 +72,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
             _hasReachedDestination = false;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         void OnDrawGizmosSelected()
         {
             Gizmos.matrix = Matrix4x4.TRS(Application.isPlaying ? _startingPos : transform.position, Quaternion.identity, new Vector3(1f, 0f, 1f));
             Gizmos.DrawWireSphere(Vector3.zero, WanderRadius);
         }
-        #endif
+#endif
     }
 }

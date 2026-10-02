@@ -14,7 +14,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             _script = MonoScript.FromMonoBehaviour((ProCamera2DLimitSpeed)target);
         }
 
@@ -22,7 +22,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DLimitSpeed = (ProCamera2DLimitSpeed)target;
 
             serializedObject.Update();
@@ -36,7 +36,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             _tooltip = new GUIContent("Pro Camera 2D", "");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);
 
-            if(proCamera2DLimitSpeed.ProCamera2D == null)
+            if (proCamera2DLimitSpeed.ProCamera2D == null)
                 EditorGUILayout.HelpBox("ProCamera2D is not set.", MessageType.Error, true);
 
             // Max speed horizontal

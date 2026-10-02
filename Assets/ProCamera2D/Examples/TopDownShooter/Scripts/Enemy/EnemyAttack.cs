@@ -73,7 +73,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
         {
             while (_hasTarget)
             {
-                var bullet = BulletPool.nextThing; 
+                var bullet = BulletPool.nextThing;
                 bullet.transform.position = WeaponTip.position;
                 bullet.transform.rotation = _transform.rotation * Quaternion.Euler(new Vector3(0, -90 + Random.Range(-FireAngleRandomness, FireAngleRandomness), 0));
 
@@ -81,7 +81,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
             }
         }
 
-        public static Vector2 RandomOnUnitCircle2(float radius) 
+        public static Vector2 RandomOnUnitCircle2(float radius)
         {
             Vector2 randomPointOnCircle = Random.insideUnitCircle;
             randomPointOnCircle.Normalize();

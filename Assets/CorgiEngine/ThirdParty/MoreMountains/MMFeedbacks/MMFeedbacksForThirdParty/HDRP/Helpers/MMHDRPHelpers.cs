@@ -11,9 +11,9 @@ using UnityEditor;
 
 namespace MoreMountains.FeedbacksForThirdParty
 {
-	public class MMHDRPHelpers : MonoBehaviour
-	{
-		#if UNITY_EDITOR && MM_HDRP
+    public class MMHDRPHelpers : MonoBehaviour
+    {
+#if UNITY_EDITOR && MM_HDRP
 		public static void GetOrCreateVolume<T, U>(MMF_Player owner, string feedbackName) where T:VolumeComponent where U:MMShaker
 		{
 			string additions = owner.name + " "+feedbackName+" feedback automatic shaker setup : ";
@@ -59,6 +59,6 @@ namespace MoreMountains.FeedbacksForThirdParty
 			
 			MMDebug.DebugLogInfo( additions + "You're all set.");
 		}
-		#endif
-	}
+#endif
+    }
 }

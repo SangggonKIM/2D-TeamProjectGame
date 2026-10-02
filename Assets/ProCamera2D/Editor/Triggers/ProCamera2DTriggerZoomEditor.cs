@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Com.LuisPedroFonseca.ProCamera2D
 {
-	[CustomEditor(typeof(ProCamera2DTriggerZoom))]
-	[CanEditMultipleObjects]
+    [CustomEditor(typeof(ProCamera2DTriggerZoom))]
+    [CanEditMultipleObjects]
     public class ProCamera2DTriggerZoomEditor : Editor
     {
         MonoScript _script;
@@ -19,9 +19,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             var proCamera2DTriggerZoom = (ProCamera2DTriggerZoom)target;
 
-            if(proCamera2DTriggerZoom.ProCamera2D == null)
+            if (proCamera2DTriggerZoom.ProCamera2D == null)
                 EditorGUILayout.HelpBox("ProCamera2D is not set.", MessageType.Error, true);
-            
+
             serializedObject.Update();
 
             // Show script link
@@ -31,11 +31,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             // ProCamera2D
             _tooltip = new GUIContent("Pro Camera 2D", "");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);
 
             // Update interval
             _tooltip = new GUIContent("Update Interval", "Every X seconds detect collision. Smaller frequencies are more precise but also require more processing.");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("UpdateInterval"), _tooltip);            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("UpdateInterval"), _tooltip);
 
             if (proCamera2DTriggerZoom.UpdateInterval <= 0.01f)
                 proCamera2DTriggerZoom.UpdateInterval = 0.01f;
@@ -49,11 +49,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             EditorGUILayout.PropertyField(serializedObject.FindProperty("SetSizeAsMultiplier"), _tooltip);
 
             // Target zoom
-            if(proCamera2DTriggerZoom.SetSizeAsMultiplier)
+            if (proCamera2DTriggerZoom.SetSizeAsMultiplier)
                 _tooltip = new GUIContent("Zoom Multiplier", "The amount of zoom the camera should do when entering this trigger");
-            else if(proCamera2DTriggerZoom.ProCamera2D.GameCamera.orthographic)
+            else if (proCamera2DTriggerZoom.ProCamera2D.GameCamera.orthographic)
                 _tooltip = new GUIContent("Target Ortho Size", "The target size of the camera when entering this trigger");
-            else 
+            else
                 _tooltip = new GUIContent("Target FOV Size", "The target size of the camera when entering this trigger");
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("TargetZoom"), _tooltip);
@@ -64,7 +64,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // Zoom smoothness
             _tooltip = new GUIContent("Zoom Smoothness", "How smooth should the zoom be?");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("ZoomSmoothness"), _tooltip);
-            
+
             if (proCamera2DTriggerZoom.ZoomSmoothness < 0f)
                 proCamera2DTriggerZoom.ZoomSmoothness = 0f;
 

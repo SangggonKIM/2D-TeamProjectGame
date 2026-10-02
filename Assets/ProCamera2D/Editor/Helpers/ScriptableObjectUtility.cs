@@ -26,7 +26,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             }
 
             var assetPathAndName = "";
-            if(string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
                 assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(path + "/New " + typeof(T) + ".asset");
             else
                 assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(path + "/New " + name + ".asset");

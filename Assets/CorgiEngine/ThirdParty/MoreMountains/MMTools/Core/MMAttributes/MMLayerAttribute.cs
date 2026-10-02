@@ -2,5 +2,5 @@ using UnityEngine;
 
 namespace MoreMountains.Tools
 {
-	public class MMLayerAttribute : PropertyAttribute { }
+    public class MMLayerAttribute : PropertyAttribute { }
 }

@@ -10,10 +10,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DSpeedBasedZoom = (ProCamera2DSpeedBasedZoom)target;
 
-            if(proCamera2DSpeedBasedZoom.ProCamera2D == null)
+            if (proCamera2DSpeedBasedZoom.ProCamera2D == null)
                 EditorGUILayout.HelpBox("ProCamera2D is not set.", MessageType.Error, true);
 
             DrawDefaultInspector();
