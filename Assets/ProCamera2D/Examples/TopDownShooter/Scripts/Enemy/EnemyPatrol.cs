@@ -17,12 +17,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
         bool _hasReachedDestination;
         float _stopTime;
 
-        void Awake ()
+        void Awake()
         {
             _navMeshAgent = this.GetComponentInChildren<NavMeshAgent>();
 
             _path = new List<Transform>();
-            if(PathContainer != null)
+            if (PathContainer != null)
             {
                 foreach (Transform child in PathContainer)
                 {
@@ -37,7 +37,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
 
         void Update()
         {
-            if(IsPaused)
+            if (IsPaused)
                 return;
 
             if (_navMeshAgent.remainingDistance <= WaypointOffset && !_hasReachedDestination)

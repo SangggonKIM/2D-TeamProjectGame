@@ -20,13 +20,13 @@ namespace MoreMountains.CorgiEngine
 
         protected bool _inputActionsEnabled = true;
         protected bool _initialized = false;
-        
+
         protected override void Start()
         {
             if (!_initialized)
             {
                 Initialization();
-            }            
+            }
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace MoreMountains.CorgiEngine
                 {
                     imButton.TriggerButtonDown();
                 }
-                if ( button.wasReleasedThisFrame || (imButton.State.CurrentState == MMInput.ButtonStates.ButtonPressed && !button.isPressed) )
+                if (button.wasReleasedThisFrame || (imButton.State.CurrentState == MMInput.ButtonStates.ButtonPressed && !button.isPressed))
                 {
                     imButton.TriggerButtonUp();
                 }

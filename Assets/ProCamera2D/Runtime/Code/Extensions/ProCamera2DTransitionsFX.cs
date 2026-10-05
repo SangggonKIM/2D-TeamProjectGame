@@ -274,7 +274,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             if (delay > 0)
             {
-                if(ProCamera2D.IgnoreTimeScale)
+                if (ProCamera2D.IgnoreTimeScale)
                     yield return new WaitForSecondsRealtime(delay);
                 else
                     yield return new WaitForSeconds(delay);
@@ -309,7 +309,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             if (OnTransitionEnded != null)
                 OnTransitionEnded();
 
-            if(endValue == 0)
+            if (endValue == 0)
                 _blit.enabled = false;
         }
     }

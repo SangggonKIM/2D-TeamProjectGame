@@ -3,46 +3,46 @@ using UnityEngine.Tilemaps;
 
 namespace MoreMountains.Tools
 {
-	[AddComponentMenu("More Mountains/Tools/Tilemaps/MM Tilemap Boolean")]
-	public class MMTilemapBoolean : MonoBehaviour
-	{
-		#if MM_PHYSICS2D
-		
-		public Tilemap TilemapToClean;
+    [AddComponentMenu("More Mountains/Tools/Tilemaps/MM Tilemap Boolean")]
+    public class MMTilemapBoolean : MonoBehaviour
+    {
+#if MM_PHYSICS2D
 
-		[MMInspectorButton("BooleanClean")]
-		public bool BooleanCleanButton;
+        public Tilemap TilemapToClean;
 
-		protected Tilemap _tilemap;
+        [MMInspectorButton("BooleanClean")]
+        public bool BooleanCleanButton;
 
-		/// <summary>
-		/// This method will copy the reference tilemap into the one on this gameobject
-		/// </summary>
-		public virtual void BooleanClean()
-		{
-			if (TilemapToClean == null)
-			{
-				return;
-			}
+        protected Tilemap _tilemap;
 
-			_tilemap = this.gameObject.GetComponent<Tilemap>();
+        /// <summary>
+        /// This method will copy the reference tilemap into the one on this gameobject
+        /// </summary>
+        public virtual void BooleanClean()
+        {
+            if (TilemapToClean == null)
+            {
+                return;
+            }
 
-			// we grab all filled positions from the ref tilemap
-			foreach (Vector3Int pos in _tilemap.cellBounds.allPositionsWithin)
-			{
-				Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-				if (_tilemap.HasTile(localPlace))
-				{
-					if (TilemapToClean.HasTile(localPlace))
-					{
-						TilemapToClean.SetTile(localPlace, null);
-					}
-				}                
-			}
-			// we clear our tilemap and resize it
-			_tilemap.RefreshAllTiles();            
-		}
+            _tilemap = this.gameObject.GetComponent<Tilemap>();
 
-		#endif
-	}
+            // we grab all filled positions from the ref tilemap
+            foreach (Vector3Int pos in _tilemap.cellBounds.allPositionsWithin)
+            {
+                Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+                if (_tilemap.HasTile(localPlace))
+                {
+                    if (TilemapToClean.HasTile(localPlace))
+                    {
+                        TilemapToClean.SetTile(localPlace, null);
+                    }
+                }
+            }
+            // we clear our tilemap and resize it
+            _tilemap.RefreshAllTiles();
+        }
+
+#endif
+    }
 }

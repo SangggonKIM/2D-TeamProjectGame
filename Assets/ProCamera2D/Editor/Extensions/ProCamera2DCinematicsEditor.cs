@@ -18,7 +18,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             _script = MonoScript.FromMonoBehaviour((ProCamera2DCinematics)target);
 
             // Cinematic targets list
@@ -30,10 +30,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     var element = _cinematicTargetsList.serializedProperty.GetArrayElementAtIndex(index);
 
                     EditorGUI.PrefixLabel(new Rect(
-                        rect.x, 
-                        rect.y, 
-                        90, 
-                        10), 
+                        rect.x,
+                        rect.y,
+                        90,
+                        10),
                         new GUIContent("Target", "The target transform"));
                     EditorGUI.PropertyField(new Rect(
                         rect.x + 90,
@@ -43,10 +43,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                         element.FindPropertyRelative("TargetTransform"), GUIContent.none);
 
                     EditorGUI.PrefixLabel(new Rect(
-                        rect.x + 200, 
-                        rect.y, 
-                        90, 
-                        10), 
+                        rect.x + 200,
+                        rect.y,
+                        90,
+                        10),
                         new GUIContent("EaseType", "The type of the movement the camera will do to reach this target"));
                     EditorGUI.PropertyField(new Rect(
                         rect.x + 260,
@@ -57,10 +57,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                     rect.y += 25;
                     EditorGUI.PrefixLabel(new Rect(
-                        rect.x, 
-                        rect.y, 
-                        90, 
-                        10), 
+                        rect.x,
+                        rect.y,
+                        90,
+                        10),
                         new GUIContent("EaseInDuration", "The time it takes to reach this target"));
                     EditorGUI.PropertyField(new Rect(
                         rect.x + 90,
@@ -68,12 +68,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                         30,
                         EditorGUIUtility.singleLineHeight * 1.1f),
                         element.FindPropertyRelative("EaseInDuration"), GUIContent.none);
-                    
+
                     EditorGUI.PrefixLabel(new Rect(
-                        rect.x + 135, 
-                        rect.y, 
-                        90, 
-                        10), 
+                        rect.x + 135,
+                        rect.y,
+                        90,
+                        10),
                         new GUIContent("HoldDuration", "The time the camera follows this target. If below 0, you'll have to manually move to the next target by using the GoToNextTarget method."));
                     EditorGUI.PropertyField(new Rect(
                         rect.x + 215,
@@ -83,10 +83,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                         element.FindPropertyRelative("HoldDuration"), GUIContent.none);
 
                     EditorGUI.PrefixLabel(new Rect(
-                        rect.x + 260, 
-                        rect.y, 
-                        90, 
-                        10), 
+                        rect.x + 260,
+                        rect.y,
+                        90,
+                        10),
                         new GUIContent("Zoom", "The zoom the camera will reach when focusing on this target"));
                     EditorGUI.PropertyField(new Rect(
                         rect.x + 300,
@@ -97,10 +97,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                     rect.y += 25;
                     EditorGUI.PrefixLabel(new Rect(
-                        rect.x, 
-                        rect.y, 
-                        90, 
-                        10), 
+                        rect.x,
+                        rect.y,
+                        90,
+                        10),
                         new GUIContent("SendMessage Name", "The name of the SendMessage to be sent to the target once it arrives its position"));
                     EditorGUI.PropertyField(new Rect(
                         rect.x + 115,
@@ -110,10 +110,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                         element.FindPropertyRelative("SendMessageName"), GUIContent.none);
 
                     EditorGUI.PrefixLabel(new Rect(
-                        rect.x + 195, 
-                        rect.y, 
-                        90, 
-                        10), 
+                        rect.x + 195,
+                        rect.y,
+                        90,
+                        10),
                         new GUIContent("SendMessage Param", "The (optional) string parameter to send"));
                     EditorGUI.PropertyField(new Rect(
                         rect.x + 310,
@@ -124,7 +124,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 };
 
             _cinematicTargetsList.drawHeaderCallback = (Rect rect) =>
-                {  
+                {
                     EditorGUI.LabelField(rect, "Cinematic Targets");
                 };
 
@@ -136,7 +136,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DCinematics = (ProCamera2DCinematics)target;
             if (proCamera2DCinematics.ProCamera2D == null)
             {
@@ -216,7 +216,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // End ease type
             _tooltip = new GUIContent("End Ease Type", "The ease type of the end animation");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("EndEaseType"), _tooltip);
-            
+
             // Use numeric boundaries
             _tooltip = new GUIContent("Use Numeric Boundaries", "If existent, the camera movement will be limited by the numeric boundaries");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("UseNumericBoundaries"), _tooltip);

@@ -5,12 +5,12 @@ using MoreMountains.Tools;
 using UnityEngine.UI;
 
 namespace MoreMountains.MMInterface
-{	
-	/// <summary>
-	/// A class to handle checkboxes
-	/// </summary>
-	public class MMCheckbox : MMSpriteReplace 
-	{
-				
-	}
+{
+    /// <summary>
+    /// A class to handle checkboxes
+    /// </summary>
+    public class MMCheckbox : MMSpriteReplace
+    {
+
+    }
 }

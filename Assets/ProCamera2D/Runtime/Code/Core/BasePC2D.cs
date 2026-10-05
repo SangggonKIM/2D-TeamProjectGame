@@ -10,21 +10,21 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             get
             {
                 if (_pc2D != null) return _pc2D;
-                
+
                 _pc2D = GetComponent<ProCamera2D>();
-                    
+
                 if (_pc2D == null && Camera.main != null)
                     _pc2D = Camera.main.GetComponent<ProCamera2D>();
-                
+
                 if (_pc2D == null)
                     _pc2D = FindAnyObjectByType<ProCamera2D>();
-                
-                #if UNITY_EDITOR
+
+#if UNITY_EDITOR
                 if (!Application.isPlaying && _pc2D != null && UnityEditor.SceneManagement.EditorSceneManager.preventCrossSceneReferences && _pc2D.gameObject.scene != gameObject.scene)
                 {
                     Debug.LogWarning("ProCamera2D is in a different scene. Cross scene references are not supported during edit mode but everything will work correctly during play. Unfortunately the cross scene reference warnings are unavoidable at the moment.");
                 }
-                #endif
+#endif
 
                 return _pc2D;
             }
@@ -43,14 +43,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         protected Transform _transform;
 
         bool _enabled;
-        
+
         [SerializeField, HideInInspector] private MovementAxis _serializedAxis;
 
         protected virtual void Awake()
         {
             _transform = transform;
 
-            if(enabled)
+            if (enabled)
                 Enable();
 
             ResetAxisFunctions();
@@ -73,14 +73,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         /// <summary>Called when the method Reset is called on the Core. Use it to reset an extension.</summary>
         public virtual void OnReset()
-        {   
+        {
         }
 
         void Enable()
         {
             if (_enabled || _pc2D == null)
                 return;
-            
+
             _enabled = true;
             _pc2D.OnReset += OnReset;
         }
@@ -122,10 +122,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     VectorHV = (h, v) => new Vector3(0, v, h);
                     VectorHVD = (h, v, d) => new Vector3(d, v, h);
                     break;
-            } 
+            }
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         int _drawGizmosCounter;
 
         void OnDrawGizmos()
@@ -154,7 +154,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             DrawGizmos();
         }
-        
+
         void OnDrawGizmosSelected()
         {
             if (!enabled)
@@ -185,21 +185,21 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         protected virtual void DrawGizmos()
         {
         }
-        
+
         protected virtual void DrawGizmosSelected()
         {
         }
-        #endif
-        
+#endif
+
         #region ISerializationCallbackReceiver
-        
+
         public void OnBeforeSerialize()
         {
             if (ProCamera2D != null)
             {
                 _serializedAxis = ProCamera2D.Axis;
             }
-        } 
+        }
 
         public void OnAfterDeserialize()
         {
@@ -229,8 +229,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        } 
+        }
 
-        #endregion 
+        #endregion
     }
 }

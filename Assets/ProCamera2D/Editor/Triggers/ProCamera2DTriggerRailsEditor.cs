@@ -16,7 +16,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             var proCamera2DTriggerRails = (ProCamera2DTriggerRails)target;
 
-            if(proCamera2DTriggerRails.ProCamera2D != null && proCamera2DTriggerRails.ProCamera2DRails == null)
+            if (proCamera2DTriggerRails.ProCamera2D != null && proCamera2DTriggerRails.ProCamera2DRails == null)
                 proCamera2DTriggerRails.ProCamera2DRails = proCamera2DTriggerRails.ProCamera2D.GetComponentInChildren<ProCamera2DRails>();
         }
 
@@ -24,7 +24,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             var proCamera2DTriggerRails = (ProCamera2DTriggerRails)target;
 
-            if(proCamera2DTriggerRails.ProCamera2D == null)
+            if (proCamera2DTriggerRails.ProCamera2D == null)
                 EditorGUILayout.HelpBox("ProCamera2D is not set.", MessageType.Error, true);
 
             serializedObject.Update();
@@ -36,11 +36,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             // ProCamera2D
             _tooltip = new GUIContent("Pro Camera 2D", "");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);
 
             // Update interval
             _tooltip = new GUIContent("Update Interval", "Every X seconds detect collision. Smaller frequencies are more precise but also require more processing.");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("UpdateInterval"), _tooltip);            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("UpdateInterval"), _tooltip);
 
             if (proCamera2DTriggerRails.UpdateInterval <= 0.01f)
                 proCamera2DTriggerRails.UpdateInterval = 0.01f;

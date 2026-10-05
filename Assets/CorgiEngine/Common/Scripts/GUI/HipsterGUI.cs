@@ -2,16 +2,16 @@
 using System.Collections;
 
 namespace MoreMountains.CorgiEngine
-{	
-	/// <summary>
-	/// A simple class that disables the avatar on start
-	/// </summary>
-	public class HipsterGUI : CorgiMonoBehaviour 
-	{
-		// Use this for initialization
-		void Start ()
-		{
-			GUIManager.Instance.SetAvatarActive(false);
-		}
-	}
+{
+    /// <summary>
+    /// A simple class that disables the avatar on start
+    /// </summary>
+    public class HipsterGUI : CorgiMonoBehaviour
+    {
+        // Use this for initialization
+        void Start()
+        {
+            GUIManager.Instance.SetAvatarActive(false);
+        }
+    }
 }

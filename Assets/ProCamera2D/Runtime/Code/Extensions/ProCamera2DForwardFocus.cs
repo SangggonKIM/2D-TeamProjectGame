@@ -58,7 +58,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemovePreMover(this);
         }
 
@@ -66,7 +66,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public void PreMove(float deltaTime)
         {
-            if(__enabled && enabled)
+            if (__enabled && enabled)
                 ApplyInfluence(deltaTime);
         }
 
@@ -134,7 +134,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                             (Mathf.Abs(currentVVel) < EPSILON))
                     {
                         currentVVel = _vVel;
-                    }   
+                    }
                 }
             }
             else
@@ -201,7 +201,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             ProCamera2D.ApplyInfluence(new Vector2(_hVel, _vVel));
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         override protected void DrawGizmos()
         {
             base.DrawGizmos();
@@ -237,6 +237,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 Utils.DrawArrowForGizmo(cameraCenter + VectorHV(0, cameraDimensions.y * BottomFocus), -transform.up * .3f);
             }
         }
-        #endif
+#endif
     }
 }

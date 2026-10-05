@@ -250,18 +250,18 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 StopCoroutine(_applyInfluencesCoroutines[i]);
             }
-            
+
             for (int i = 0; i < _shakeTimedCoroutines.Count; i++)
             {
                 StopCoroutine(_shakeTimedCoroutines[i]);
             }
-            
+
             if (_shakeCoroutine != null)
             {
                 StopCoroutine(_shakeCoroutine);
                 _shakeCoroutine = null;
             }
-            
+
             _shakePositions.Clear();
 
             _shakeVelocity = Vector3.zero;
@@ -277,13 +277,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (CurrentConstantShakePreset != null)
                 StopConstantShaking(0);
-            
+
             CurrentConstantShakePreset = preset;
 
             _isConstantShaking = true;
 
             _constantShakePositions = new Vector3[preset.Layers.Count];
-            
+
             for (int i = 0; i < preset.Layers.Count; i++)
             {
                 StartCoroutine(CalculateConstantShakePosition(
@@ -448,13 +448,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         IEnumerator ApplyShakesTimedRoutine(IList<Vector2> shakes, IList<Quaternion> rotations, float[] durations, bool ignoreTimeScale = false)
         {
             _shakeTimedCoroutines = new List<Coroutine>();
-            
+
             var count = -1;
             while (count < durations.Length - 1)
             {
                 count++;
                 var duration = durations[count];
-                
+
                 var coroutine = StartCoroutine(ApplyShakeTimedRoutine(shakes[count], rotations[count], duration, ignoreTimeScale));
                 _shakeTimedCoroutines.Add(coroutine);
 
@@ -470,9 +470,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 if (ignoreTimeScale)
                 {
-                    if(ProCamera2D.UpdateType == UpdateType.LateUpdate)
+                    if (ProCamera2D.UpdateType == UpdateType.LateUpdate)
                         duration -= Time.unscaledDeltaTime;
-                    else if(ProCamera2D.UpdateType == UpdateType.FixedUpdate)
+                    else if (ProCamera2D.UpdateType == UpdateType.FixedUpdate)
                         duration -= Time.fixedUnscaledDeltaTime;
                 }
                 else
@@ -512,12 +512,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 var randomAmplitudeY = unitSphere.y * amplitudeY;
                 var randomAmplitudeZ = unitSphere.z * amplitudeZ;
 
-                if(index < _constantShakePositions.Length)
+                if (index < _constantShakePositions.Length)
                     _constantShakePositions[index] = VectorHVD(randomAmplitudeX, randomAmplitudeY, randomAmplitudeZ);
 
                 //Debug.DrawLine(transform.localPosition, transform.localPosition + VectorHVD(randomAmplitudeX, randomAmplitudeY, randomAmplitudeZ), Color.green, randomFrequency);
 
-                if(ProCamera2D.IgnoreTimeScale)
+                if (ProCamera2D.IgnoreTimeScale)
                     yield return new WaitForSecondsRealtime(randomFrequency);
                 else
                     yield return new WaitForSeconds(randomFrequency);

@@ -33,7 +33,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static bool SetBool(String name, bool value)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             try
             {
                 EditorPrefs.SetInt(name, value ? 1 : 0);
@@ -42,58 +42,58 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 return false;
             }
-            #endif
+#endif
             return true;
         }
 
         public static bool GetBool(String name)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             return EditorPrefs.GetInt(name) == 1;
-            #else
+#else
 			return true;
-            #endif
+#endif
         }
 
         public static bool GetBool(String name, bool defaultValue)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             return (1 == EditorPrefs.GetInt(name, defaultValue ? 1 : 0));
-            #else
+#else
 			return true;
-            #endif
+#endif
         }
 
         public static long GetLong(string key, long defaultValue)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             int lowBits, highBits;
             SplitLong(defaultValue, out lowBits, out highBits);
             lowBits = EditorPrefs.GetInt(key + "_lowBits", lowBits);
             highBits = EditorPrefs.GetInt(key + "_highBits", highBits);
- 
+
             // unsigned, to prevent loss of sign bit.
             ulong ret = (uint)highBits;
             ret = (ret << 32);
             return (long)(ret | (ulong)(uint)lowBits);
-            #else
+#else
 			return 0;
-            #endif
+#endif
         }
 
         public static long GetLong(string key)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             int lowBits = EditorPrefs.GetInt(key + "_lowBits");
             int highBits = EditorPrefs.GetInt(key + "_highBits");
- 
+
             // unsigned, to prevent loss of sign bit.
             ulong ret = (uint)highBits;
             ret = (ret << 32);
             return (long)(ret | (ulong)(uint)lowBits);
-            #else
+#else
 			return 0;
-            #endif
+#endif
         }
 
         private static void SplitLong(long input, out int lowBits, out int highBits)
@@ -105,17 +105,17 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static void SetLong(string key, long value)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             int lowBits, highBits;
             SplitLong(value, out lowBits, out highBits);
             EditorPrefs.SetInt(key + "_lowBits", lowBits);
             EditorPrefs.SetInt(key + "_highBits", highBits);
-            #endif
+#endif
         }
 
         public static bool SetVector2(String key, Vector2 vector)
         {
-            return SetFloatArray(key, new float[]{ vector.x, vector.y });
+            return SetFloatArray(key, new float[] { vector.x, vector.y });
         }
 
         static Vector2 GetVector2(String key)
@@ -130,20 +130,20 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static Vector2 GetVector2(String key, Vector2 defaultValue)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetVector2(key);
             }
             return defaultValue;
-            #else
+#else
 			return Vector2.zero;
-            #endif
+#endif
         }
 
         public static bool SetVector3(String key, Vector3 vector)
         {
-            return SetFloatArray(key, new float []{ vector.x, vector.y, vector.z });
+            return SetFloatArray(key, new float[] { vector.x, vector.y, vector.z });
         }
 
         public static Vector3 GetVector3(String key)
@@ -158,20 +158,20 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static Vector3 GetVector3(String key, Vector3 defaultValue)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetVector3(key);
             }
             return defaultValue;
-            #else
+#else
 			return Vector3.zero;
-            #endif
+#endif
         }
 
         public static bool SetQuaternion(String key, Quaternion vector)
         {
-            return SetFloatArray(key, new float[]{ vector.x, vector.y, vector.z, vector.w });
+            return SetFloatArray(key, new float[] { vector.x, vector.y, vector.z, vector.w });
         }
 
         public static Quaternion GetQuaternion(String key)
@@ -186,20 +186,20 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static Quaternion GetQuaternion(String key, Quaternion defaultValue)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetQuaternion(key);
             }
             return defaultValue;
-            #else
+#else
 			return Quaternion.identity;
-            #endif
+#endif
         }
 
         public static bool SetColor(String key, Color color)
         {
-            return SetFloatArray(key, new float[]{ color.r, color.g, color.b, color.a });
+            return SetFloatArray(key, new float[] { color.r, color.g, color.b, color.a });
         }
 
         public static Color GetColor(String key)
@@ -214,15 +214,15 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static Color GetColor(String key, Color defaultValue)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetColor(key);
             }
             return defaultValue;
-            #else
+#else
 			return Color.white;
-            #endif
+#endif
         }
 
         public static bool SetBoolArray(String key, bool[] boolArray)
@@ -286,7 +286,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static bool[] GetBoolArray(String key, bool defaultValue, int defaultSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetBoolArray(key);
@@ -297,18 +297,18 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 boolArray[i] = defaultValue;
             }
             return boolArray;
-            #else
+#else
 			return new bool[0];
-            #endif
+#endif
         }
 
         public static bool SetStringArray(String key, String[] stringArray)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             var bytes = new byte[stringArray.Length + 1];
             bytes[0] = System.Convert.ToByte(ArrayType.String);	// Identifier
             Initialize();
- 
+
             // Store the length of each string that's in stringArray, so we can extract the correct strings in GetStringArray
             for (var i = 0; i < stringArray.Length; i++)
             {
@@ -324,7 +324,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 }
                 bytes[idx++] = (byte)stringArray[i].Length;
             }
- 
+
             try
             {
                 EditorPrefs.SetString(key, System.Convert.ToBase64String(bytes) + "|" + String.Join("", stringArray));
@@ -333,13 +333,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 return false;
             }
-            #endif
+#endif
             return true;
         }
 
         public static String[] GetStringArray(String key)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 var completeString = EditorPrefs.GetString(key);
@@ -356,7 +356,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     return new String[0];
                 }
                 Initialize();
- 
+
                 var numberOfEntries = bytes.Length - 1;
                 var stringArray = new String[numberOfEntries];
                 var stringIndex = separatorIndex + 1;
@@ -371,16 +371,16 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     stringArray[i] = completeString.Substring(stringIndex, stringLength);
                     stringIndex += stringLength;
                 }
- 
+
                 return stringArray;
             }
-            #endif
+#endif
             return new String[0];
         }
 
         public static String[] GetStringArray(String key, String defaultValue, int defaultSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetStringArray(key);
@@ -391,9 +391,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 stringArray[i] = defaultValue;
             }
             return stringArray;
-            #else
+#else
 			return new String[0];
-            #endif
+#endif
         }
 
         public static bool SetIntArray(String key, int[] intArray)
@@ -426,15 +426,15 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             return SetValue(key, colorArray, ArrayType.Color, 4, ConvertFromColor);
         }
 
-        private static bool SetValue<T>(String key, T array, ArrayType arrayType, int vectorNumber, Action<T, byte[],int> convert) where T : IList
+        private static bool SetValue<T>(String key, T array, ArrayType arrayType, int vectorNumber, Action<T, byte[], int> convert) where T : IList
         {
             var bytes = new byte[(4 * array.Count) * vectorNumber + 1];
             bytes[0] = System.Convert.ToByte(arrayType);	// Identifier
             Initialize();
- 
+
             for (var i = 0; i < array.Count; i++)
             {
-                convert(array, bytes, i);	
+                convert(array, bytes, i);
             }
             return SaveBytes(key, bytes);
         }
@@ -487,7 +487,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static int[] GetIntArray(String key, int defaultValue, int defaultSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetIntArray(key);
@@ -498,9 +498,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 intArray[i] = defaultValue;
             }
             return intArray;
-            #else
+#else
 			return new int[0];
-            #endif
+#endif
         }
 
         public static float[] GetFloatArray(String key)
@@ -512,7 +512,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static float[] GetFloatArray(String key, float defaultValue, int defaultSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetFloatArray(key);
@@ -523,9 +523,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 floatArray[i] = defaultValue;
             }
             return floatArray;
-            #else
+#else
 			return new float[0];
-            #endif
+#endif
         }
 
         public static Vector2[] GetVector2Array(String key)
@@ -537,7 +537,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static Vector2[] GetVector2Array(String key, Vector2 defaultValue, int defaultSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetVector2Array(key);
@@ -548,9 +548,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 vector2Array[i] = defaultValue;
             }
             return vector2Array;
-            #else
+#else
 			return new Vector2[0];
-            #endif
+#endif
         }
 
         public static Vector3[] GetVector3Array(String key)
@@ -562,7 +562,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static Vector3[] GetVector3Array(String key, Vector3 defaultValue, int defaultSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetVector3Array(key);
@@ -573,9 +573,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 vector3Array[i] = defaultValue;
             }
             return vector3Array;
-            #else
+#else
 			return new Vector3[0];
-            #endif
+#endif
         }
 
         public static Quaternion[] GetQuaternionArray(String key)
@@ -587,7 +587,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static Quaternion[] GetQuaternionArray(String key, Quaternion defaultValue, int defaultSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetQuaternionArray(key);
@@ -598,9 +598,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 quaternionArray[i] = defaultValue;
             }
             return quaternionArray;
-            #else
+#else
 			return new Quaternion[0];
-            #endif
+#endif
         }
 
         public static Color[] GetColorArray(String key)
@@ -612,7 +612,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static Color[] GetColorArray(String key, Color defaultValue, int defaultSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 return GetColorArray(key);
@@ -623,14 +623,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 colorArray[i] = defaultValue;
             }
             return colorArray;
-            #else
+#else
 			return new Color[0];
-            #endif
+#endif
         }
 
         private static void GetValue<T>(String key, T list, ArrayType arrayType, int vectorNumber, Action<T, byte[]> convert) where T : IList
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorPrefs.HasKey(key))
             {
                 var bytes = System.Convert.FromBase64String(EditorPrefs.GetString(key));
@@ -645,14 +645,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     return;
                 }
                 Initialize();
- 
+
                 var end = (bytes.Length - 1) / (vectorNumber * 4);
                 for (var i = 0; i < end; i++)
                 {
                     convert(list, bytes);
                 }
             }
-            #endif
+#endif
         }
 
         private static void ConvertToInt(List<int> list, byte[] bytes)
@@ -687,14 +687,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public static void ShowArrayType(String key)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             var bytes = System.Convert.FromBase64String(EditorPrefs.GetString(key));
             if (bytes.Length > 0)
             {
                 ArrayType arrayType = (ArrayType)bytes[0];
                 Debug.Log(key + " is a " + arrayType.ToString() + " array");
             }
-            #endif
+#endif
         }
 
         private static void Initialize()
@@ -718,7 +718,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         private static bool SaveBytes(String key, byte[] bytes)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             try
             {
                 EditorPrefs.SetString(key, System.Convert.ToBase64String(bytes));
@@ -727,7 +727,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 return false;
             }
-            #endif
+#endif
             return true;
         }
 

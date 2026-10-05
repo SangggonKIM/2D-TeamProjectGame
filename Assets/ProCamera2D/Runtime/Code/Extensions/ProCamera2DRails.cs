@@ -58,7 +58,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemovePreMover(this);
         }
 
@@ -85,21 +85,21 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 {
                     case FollowMode.HorizontalAxis:
                         pos = VectorHVD(
-                            Vector3H(CameraTargets[i].TargetPosition) * CameraTargets[i].TargetInfluenceH, 
-                            Vector3V(ProCamera2D.LocalPosition), 
+                            Vector3H(CameraTargets[i].TargetPosition) * CameraTargets[i].TargetInfluenceH,
+                            Vector3V(ProCamera2D.LocalPosition),
                             0);
                         break;
 
                     case FollowMode.VerticalAxis:
                         pos = VectorHVD(
-                            Vector3H(ProCamera2D.LocalPosition), 
-                            Vector3V(CameraTargets[i].TargetPosition) * CameraTargets[i].TargetInfluenceV, 
+                            Vector3H(ProCamera2D.LocalPosition),
+                            Vector3V(CameraTargets[i].TargetPosition) * CameraTargets[i].TargetInfluenceV,
                             0);
                         break;
 
                     case FollowMode.BothAxis:
                         pos = VectorHVD(
-                            Vector3H(CameraTargets[i].TargetPosition) * CameraTargets[i].TargetInfluenceH, 
+                            Vector3H(CameraTargets[i].TargetPosition) * CameraTargets[i].TargetInfluenceH,
                             Vector3V(CameraTargets[i].TargetPosition) * CameraTargets[i].TargetInfluenceV,
                             0);
                         break;
@@ -118,7 +118,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (GetRailsTarget(targetTransform) != null)
                 return;
-            
+
             var newCameraTarget = new CameraTarget()
             {
                 TargetTransform = targetTransform,
@@ -177,9 +177,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         /// <param name="transitionDuration">The time it takes to disable the targets</param>
         public void DisableTargets(float transitionDuration = 0f)
         {
-            if(_tempCameraTargets.Count != 0)
+            if (_tempCameraTargets.Count != 0)
                 return;
-                
+
             for (int i = 0; i < _cameraTargetsOnRails.Count; i++)
             {
                 ProCamera2D.RemoveCameraTarget(_cameraTargetsOnRails[CameraTargets[i]], transitionDuration);
@@ -196,7 +196,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 ProCamera2D.RemoveCameraTarget(_tempCameraTargets[i].TargetTransform, transitionDuration);
                 ProCamera2D.AddCameraTarget(_cameraTargetsOnRails[CameraTargets[i]], 1, 1, transitionDuration);
             }
-            
+
             _tempCameraTargets.Clear();
         }
 
@@ -246,7 +246,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             }
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         override protected void DrawGizmos()
         {
             base.DrawGizmos();
@@ -254,8 +254,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             var cameraDimensions = Utils.GetScreenSizeInWorldCoords(ProCamera2D.GameCamera, Mathf.Abs(Vector3D(transform.localPosition)));
 
             Gizmos.color = EditorPrefsX.GetColor(PrefsData.RailsColorKey, PrefsData.RailsColorValue);
-            
-            if(_tempCameraTargets.Count > 0)
+
+            if (_tempCameraTargets.Count > 0)
                 Gizmos.color = Gizmos.color * .7f;
 
             // Rails nodes
@@ -273,6 +273,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 }
             }
         }
-        #endif
+#endif
     }
 }

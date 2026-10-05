@@ -15,10 +15,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         static List<Vector3> _playModeNodes = new List<Vector3>();
         static string _currentScene;
-        
+
         MonoScript _script;
         GUIContent _tooltip;
-        
+
         ReorderableList _targetsList;
 
         void OnEnable()
@@ -49,7 +49,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 _playModeNodes.Clear();
             }
             serializedObject.ApplyModifiedProperties();
-            
+
             // Script
             _script = MonoScript.FromMonoBehaviour(proCamera2DRails);
 
@@ -72,14 +72,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     VectorHV = (h, v) => new Vector3(0, v, h);
                     break;
             }
-            
+
             // Create nodes if non-existant
             if (proCamera2DRails.RailNodes.Count < 2)
             {
                 proCamera2DRails.RailNodes.Add(VectorHV(1, 1));
                 proCamera2DRails.RailNodes.Add(VectorHV(2, 2));
             }
-            
+
             // Show correct axis name
             var hAxis = "";
             var vAxis = "";
@@ -100,7 +100,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     vAxis = "Z";
                     break;
             }
-            
+
             // Targets List
             _targetsList = new ReorderableList(serializedObject, serializedObject.FindProperty("CameraTargets"), false, false, true, true);
 
@@ -114,7 +114,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 rect.y += 2;
                 var element = _targetsList.serializedProperty.GetArrayElementAtIndex(index);
 
-				EditorGUI.PrefixLabel(new Rect(rect.x, rect.y, 65, 10), new GUIContent("Transform", "The target transform"));
+                EditorGUI.PrefixLabel(new Rect(rect.x, rect.y, 65, 10), new GUIContent("Transform", "The target transform"));
                 EditorGUI.PropertyField(new Rect(
                         rect.x + 65,
                         rect.y,
@@ -122,7 +122,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                         EditorGUIUtility.singleLineHeight),
                     element.FindPropertyRelative("TargetTransform"), GUIContent.none);
 
-				EditorGUI.PrefixLabel(new Rect(rect.x + 160, rect.y, 65, 10), new GUIContent("Offset", "Offset the camera position relative to this target"));
+                EditorGUI.PrefixLabel(new Rect(rect.x + 160, rect.y, 65, 10), new GUIContent("Offset", "Offset the camera position relative to this target"));
                 EditorGUI.PropertyField(new Rect(
                         rect.x + 200,
                         rect.y,
@@ -158,19 +158,19 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             _playModeNodes = proCamera2DRails.RailNodes;
         }
-        
+
         public override void OnInspectorGUI()
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DRails = (ProCamera2DRails)target;
-            
-            if(proCamera2DRails.ProCamera2D == null)
+
+            if (proCamera2DRails.ProCamera2D == null)
                 EditorGUILayout.HelpBox("ProCamera2D is not set.", MessageType.Error, true);
-                
+
             serializedObject.Update();
-            
+
             // Show script link
             GUI.enabled = false;
             _script = EditorGUILayout.ObjectField("Script", _script, typeof(MonoScript), false) as MonoScript;
@@ -180,7 +180,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             _tooltip = new GUIContent("Pro Camera 2D", "");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);
             EditorGUILayout.Space();
-            
+
             // Targets Drop Area
             Event evt = Event.current;
             Rect drop_area = GUILayoutUtility.GetRect(0.0f, 50.0f, GUILayout.ExpandWidth(true));
@@ -209,7 +209,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                                 TargetTransform = ((GameObject)dragged_object).transform,
                                 TargetInfluence = 1f
                             };
-							
+
                             proCamera2DRails.CameraTargets.Add(newCameraTarget);
                             EditorUtility.SetDirty(proCamera2DRails);
                         }
@@ -217,17 +217,17 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     break;
             }
             EditorGUILayout.Space();
-            
+
             // Targets List
             _targetsList.DoLayoutList();
             EditorGUILayout.Space();
             EditorGUILayout.Space();
-            
+
             // Follow mode
             _tooltip = new GUIContent("FollowMode", "This defines which axis to use to calculate the targets position on the rails");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("FollowMode"), _tooltip);
             EditorGUILayout.Space();
-            
+
             // Apply modified properties
             serializedObject.ApplyModifiedProperties();
         }
@@ -261,10 +261,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // Draw left and right handles
             var rightHandlePos = (proCamera2DRails.RailNodes[nodesCount - 1] - proCamera2DRails.RailNodes[nodesCount - 2]).normalized * .5f + proCamera2DRails.RailNodes[nodesCount - 1];
             if (Handles.Button(
-                rightHandlePos, 
-                Quaternion.identity, 
-                handleSize * .5f, 
-                handleSize, 
+                rightHandlePos,
+                Quaternion.identity,
+                handleSize * .5f,
+                handleSize,
                 Handles.RectangleHandleCap))
             {
                 Undo.RecordObject(proCamera2DRails, "Add");
@@ -273,10 +273,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             var leftHandlesPos = (proCamera2DRails.RailNodes[0] - proCamera2DRails.RailNodes[1]).normalized * .5f + proCamera2DRails.RailNodes[0];
             if (Handles.Button(
-                leftHandlesPos, 
-                Quaternion.identity, 
-                handleSize * .5f, 
-                handleSize, 
+                leftHandlesPos,
+                Quaternion.identity,
+                handleSize * .5f,
+                handleSize,
                 Handles.RectangleHandleCap))
             {
                 Undo.RecordObject(proCamera2DRails, "Add");
@@ -295,7 +295,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 #else
                 var newPos = Handles.FreeMoveHandle(oldPos, Quaternion.identity, handleSize, pointSnap, Handles.DotHandleCap);
 #endif
-                
+
                 // Move
                 if (newPos != oldPos)
                 {
@@ -313,10 +313,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     var midPoint = Vector3.Lerp(proCamera2DRails.RailNodes[i - 1], proCamera2DRails.RailNodes[i], 0.5f);
 
                     if (Handles.Button(
-                        midPoint, 
-                        Quaternion.identity, 
-                        handleSize * .5f, 
-                        handleSize, 
+                        midPoint,
+                        Quaternion.identity,
+                        handleSize * .5f,
+                        handleSize,
                         Handles.RectangleHandleCap))
                     {
                         Undo.RecordObject(proCamera2DRails, "Add");
@@ -330,10 +330,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     Handles.color = Color.red;
                     var deleteButtonPos = proCamera2DRails.RailNodes[i];
                     if (Handles.Button(
-                        deleteButtonPos, 
-                        Quaternion.identity, 
-                        handleSize, 
-                        handleSize, 
+                        deleteButtonPos,
+                        Quaternion.identity,
+                        handleSize,
+                        handleSize,
                         Handles.DotHandleCap))
                     {
                         Undo.RecordObject(proCamera2DRails, "Remove");

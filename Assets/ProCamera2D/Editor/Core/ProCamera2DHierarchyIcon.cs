@@ -17,7 +17,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             if (_icon == null || _icon_plugin == null)
             {
                 return;
-            } 
+            }
 
 #if UNITY_6000_4_OR_NEWER
             EditorApplication.hierarchyWindowItemByEntityIdOnGUI += HierarchyItemCB;
@@ -42,7 +42,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             if (go == null)
             {
                 return;
-            }   
+            }
 
             if (_icon != null && go.GetComponent<ProCamera2D>() != null)
             {

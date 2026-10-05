@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Com.LuisPedroFonseca.ProCamera2D
 {
-	[CustomEditor(typeof(ProCamera2DTriggerBoundaries))]
-	[CanEditMultipleObjects]
+    [CustomEditor(typeof(ProCamera2DTriggerBoundaries))]
+    [CanEditMultipleObjects]
     public class ProCamera2DTriggerBoundariesEditor : Editor
     {
         MonoScript _script;
-    	GUIContent _tooltip;
+        GUIContent _tooltip;
 
         void OnEnable()
         {
-			var proCamera2DTriggerBoundaries = (ProCamera2DTriggerBoundaries)target;
+            var proCamera2DTriggerBoundaries = (ProCamera2DTriggerBoundaries)target;
 
             if (proCamera2DTriggerBoundaries.NumericBoundaries == null && proCamera2DTriggerBoundaries.ProCamera2D != null)
             {
@@ -25,12 +25,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public override void OnInspectorGUI()
         {
-			var proCamera2DTriggerBoundaries = (ProCamera2DTriggerBoundaries)target;
+            var proCamera2DTriggerBoundaries = (ProCamera2DTriggerBoundaries)target;
 
             if (proCamera2DTriggerBoundaries.ProCamera2D == null)
                 EditorGUILayout.HelpBox("ProCamera2D is not set.", MessageType.Error, true);
 
-			serializedObject.Update();
+            serializedObject.Update();
 
             // Show script link
             GUI.enabled = false;
@@ -39,11 +39,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             // ProCamera2D
             _tooltip = new GUIContent("Pro Camera 2D", "");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);
 
             // Update interval
             _tooltip = new GUIContent("Update Interval", "Every X seconds detect collision. Smaller frequencies are more precise but also require more processing.");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("UpdateInterval"), _tooltip);            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("UpdateInterval"), _tooltip);
 
             if (proCamera2DTriggerBoundaries.UpdateInterval <= 0.01f)
                 proCamera2DTriggerBoundaries.UpdateInterval = 0.01f;
@@ -52,20 +52,20 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             _tooltip = new GUIContent("Trigger Shape", "");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("TriggerShape"), _tooltip);
 
-			// Boundaries relative
-			_tooltip = new GUIContent("Are boundaries relative", "Are the boundaries relative to this or are they world positions?");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("AreBoundariesRelative"), _tooltip);			
+            // Boundaries relative
+            _tooltip = new GUIContent("Are boundaries relative", "Are the boundaries relative to this or are they world positions?");
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("AreBoundariesRelative"), _tooltip);
 
-			// Top boundary
-			EditorGUILayout.BeginHorizontal();
+            // Top boundary
+            EditorGUILayout.BeginHorizontal();
 
-			_tooltip = new GUIContent("Use Top Boundary", "Should the camera top position be limited?");
+            _tooltip = new GUIContent("Use Top Boundary", "Should the camera top position be limited?");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("UseTopBoundary"), _tooltip);
 
-            if(proCamera2DTriggerBoundaries.UseTopBoundary)
+            if (proCamera2DTriggerBoundaries.UseTopBoundary)
             {
-	            _tooltip = new GUIContent(" ", "Camera top boundary");
-	            EditorGUILayout.PropertyField(serializedObject.FindProperty("TopBoundary"), _tooltip);
+                _tooltip = new GUIContent(" ", "Camera top boundary");
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("TopBoundary"), _tooltip);
             }
 
             EditorGUILayout.EndHorizontal();
@@ -73,13 +73,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // Bottom boundary
             EditorGUILayout.BeginHorizontal();
 
-			_tooltip = new GUIContent("Use Bottom Boundary", "Should the camera bottom position be limited?");
+            _tooltip = new GUIContent("Use Bottom Boundary", "Should the camera bottom position be limited?");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("UseBottomBoundary"), _tooltip);
 
-            if(proCamera2DTriggerBoundaries.UseBottomBoundary)
+            if (proCamera2DTriggerBoundaries.UseBottomBoundary)
             {
-	            _tooltip = new GUIContent(" ", "Camera bottom boundary");
-	            EditorGUILayout.PropertyField(serializedObject.FindProperty("BottomBoundary"), _tooltip);
+                _tooltip = new GUIContent(" ", "Camera bottom boundary");
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("BottomBoundary"), _tooltip);
             }
 
             EditorGUILayout.EndHorizontal();
@@ -87,13 +87,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // Left boundary
             EditorGUILayout.BeginHorizontal();
 
-			_tooltip = new GUIContent("Use Left Boundary", "Should the camera left position be limited?");
+            _tooltip = new GUIContent("Use Left Boundary", "Should the camera left position be limited?");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("UseLeftBoundary"), _tooltip);
 
-            if(proCamera2DTriggerBoundaries.UseLeftBoundary)
+            if (proCamera2DTriggerBoundaries.UseLeftBoundary)
             {
-	            _tooltip = new GUIContent(" ", "Camera left boundary");
-	            EditorGUILayout.PropertyField(serializedObject.FindProperty("LeftBoundary"), _tooltip);
+                _tooltip = new GUIContent(" ", "Camera left boundary");
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("LeftBoundary"), _tooltip);
             }
 
             EditorGUILayout.EndHorizontal();
@@ -101,13 +101,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // Right boundary
             EditorGUILayout.BeginHorizontal();
 
-			_tooltip = new GUIContent("Use Right Boundary", "Should the camera right position be limited?");
+            _tooltip = new GUIContent("Use Right Boundary", "Should the camera right position be limited?");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("UseRightBoundary"), _tooltip);
 
-            if(proCamera2DTriggerBoundaries.UseRightBoundary)
+            if (proCamera2DTriggerBoundaries.UseRightBoundary)
             {
-	            _tooltip = new GUIContent(" ", "Camera right boundary");
-	            EditorGUILayout.PropertyField(serializedObject.FindProperty("RightBoundary"), _tooltip);
+                _tooltip = new GUIContent(" ", "Camera right boundary");
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("RightBoundary"), _tooltip);
             }
 
             EditorGUILayout.EndHorizontal();
@@ -154,10 +154,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             _tooltip = new GUIContent("Set as starting boundaries", "Use this boundaries as the starting ones");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_setAsStartingBoundaries"), _tooltip);
 
-            if(proCamera2DTriggerBoundaries._setAsStartingBoundaries)
+            if (proCamera2DTriggerBoundaries._setAsStartingBoundaries)
             {
                 var allBoundariesTriggers = FindObjectsByType<ProCamera2DTriggerBoundaries>(FindObjectsSortMode.None);
-                foreach (var trigger in allBoundariesTriggers) 
+                foreach (var trigger in allBoundariesTriggers)
                 {
                     trigger._setAsStartingBoundaries = false;
                 }
@@ -166,20 +166,20 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             }
 
             // Limit boundaries
-			if (proCamera2DTriggerBoundaries.LeftBoundary > proCamera2DTriggerBoundaries.RightBoundary)
-				proCamera2DTriggerBoundaries.LeftBoundary = proCamera2DTriggerBoundaries.RightBoundary;
+            if (proCamera2DTriggerBoundaries.LeftBoundary > proCamera2DTriggerBoundaries.RightBoundary)
+                proCamera2DTriggerBoundaries.LeftBoundary = proCamera2DTriggerBoundaries.RightBoundary;
 
-			if (proCamera2DTriggerBoundaries.RightBoundary < proCamera2DTriggerBoundaries.LeftBoundary)
-				proCamera2DTriggerBoundaries.RightBoundary = proCamera2DTriggerBoundaries.LeftBoundary;
+            if (proCamera2DTriggerBoundaries.RightBoundary < proCamera2DTriggerBoundaries.LeftBoundary)
+                proCamera2DTriggerBoundaries.RightBoundary = proCamera2DTriggerBoundaries.LeftBoundary;
 
-			if (proCamera2DTriggerBoundaries.BottomBoundary > proCamera2DTriggerBoundaries.TopBoundary)
-				proCamera2DTriggerBoundaries.BottomBoundary = proCamera2DTriggerBoundaries.TopBoundary;
+            if (proCamera2DTriggerBoundaries.BottomBoundary > proCamera2DTriggerBoundaries.TopBoundary)
+                proCamera2DTriggerBoundaries.BottomBoundary = proCamera2DTriggerBoundaries.TopBoundary;
 
-			if (proCamera2DTriggerBoundaries.TopBoundary < proCamera2DTriggerBoundaries.BottomBoundary)
-				proCamera2DTriggerBoundaries.TopBoundary = proCamera2DTriggerBoundaries.BottomBoundary;
+            if (proCamera2DTriggerBoundaries.TopBoundary < proCamera2DTriggerBoundaries.BottomBoundary)
+                proCamera2DTriggerBoundaries.TopBoundary = proCamera2DTriggerBoundaries.BottomBoundary;
 
 
-			serializedObject.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }
