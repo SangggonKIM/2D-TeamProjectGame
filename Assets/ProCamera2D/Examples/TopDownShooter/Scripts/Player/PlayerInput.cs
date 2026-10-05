@@ -30,14 +30,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
             {
                 cinematics[i].OnCinematicStarted.AddListener(() =>
                     {
-                        _movementAllowed = false; 
+                        _movementAllowed = false;
                         _currentSpeedH = 0;
                         _currentSpeedV = 0;
                     });
 
                 cinematics[i].OnCinematicFinished.AddListener(() =>
                     {
-                        _movementAllowed = true; 
+                        _movementAllowed = true;
                     });
             }
         }
@@ -64,11 +64,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
         {
             if (n == target)
             {
-                return n;   
+                return n;
             }
             else
             {
-                float dir = Mathf.Sign(target - n); 
+                float dir = Mathf.Sign(target - n);
                 n += a * Time.deltaTime * dir;
                 return (dir == Mathf.Sign(target - n)) ? n : target;
             }

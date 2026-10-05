@@ -12,10 +12,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         public bool LimitVerticalSpeed = true;
         public float MaxVerticalSpeed = 2f;
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public float CurrentSpeedHorizontal;
         public float CurrentSpeedVertical;
-        #endif
+#endif
 
         protected override void Awake()
         {
@@ -28,7 +28,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemovePositionDeltaChanger(this);
         }
 
@@ -49,11 +49,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             if (LimitVerticalSpeed)
                 newVerticalDeltaMovement = Mathf.Clamp(newVerticalDeltaMovement, -MaxVerticalSpeed, MaxVerticalSpeed);
-            
-            #if UNITY_EDITOR
+
+#if UNITY_EDITOR
             CurrentSpeedHorizontal = newHorizontalDeltaMovement;
             CurrentSpeedVertical = newVerticalDeltaMovement;
-            #endif
+#endif
 
             return VectorHV(newHorizontalDeltaMovement * deltaTime, newVerticalDeltaMovement * deltaTime);
         }

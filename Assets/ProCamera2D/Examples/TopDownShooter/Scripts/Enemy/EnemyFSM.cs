@@ -36,7 +36,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
             _sight.OnPlayerInSight += OnPlayerInSight;
             _sight.OnPlayerOutOfSight += OnPlayerOutOfSight;
 
-            if(Key != null)
+            if (Key != null)
                 Key.gameObject.SetActive(false);
         }
 
@@ -55,7 +55,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
         {
             if (Health <= 0)
                 return;
-            
+
             Health -= damage;
 
             StartCoroutine(HitAnim());
@@ -71,11 +71,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
             Colorize(Color.white);
 
             yield return new WaitForSeconds(.05f);
-            
+
             Colorize(_currentColor);
         }
 
-        void OnPlayerInSight (Transform obj)
+        void OnPlayerInSight(Transform obj)
         {
             _wander.StopWandering();
             _attack.Attack(obj);
@@ -86,7 +86,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
             Colorize(_currentColor);
         }
 
-        void OnPlayerOutOfSight ()
+        void OnPlayerOutOfSight()
         {
             _wander.StartWandering();
             _attack.StopAttack();

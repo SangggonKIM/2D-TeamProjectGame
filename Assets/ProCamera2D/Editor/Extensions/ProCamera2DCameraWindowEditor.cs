@@ -14,7 +14,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             _script = MonoScript.FromMonoBehaviour((ProCamera2DCameraWindow)target);
         }
 
@@ -22,7 +22,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DCameraWindow = (ProCamera2DCameraWindow)target;
             if (proCamera2DCameraWindow.ProCamera2D == null)
             {

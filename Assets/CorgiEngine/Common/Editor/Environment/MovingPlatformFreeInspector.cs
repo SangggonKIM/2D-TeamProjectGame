@@ -6,47 +6,47 @@ using UnityEngine;
 namespace MoreMountains.CorgiEngine
 {
 
-	[CustomEditor (typeof(MovingPlatformFree), true)]
-	[CanEditMultipleObjects]
+    [CustomEditor(typeof(MovingPlatformFree), true)]
+    [CanEditMultipleObjects]
 
-	/// <summary>
-	/// Adds custom labels to the CorgiController inspector
-	/// </summary>
+    /// <summary>
+    /// Adds custom labels to the CorgiController inspector
+    /// </summary>
 
-	public class MovingPlatformFreeInspector : Editor 
-	{
-		protected MovingPlatformFree _movingPlatformFree;
-        
-		protected SerializedProperty _debugCurrentSpeed;
-		protected SerializedProperty _updateMethod;
+    public class MovingPlatformFreeInspector : Editor
+    {
+        protected MovingPlatformFree _movingPlatformFree;
 
-		public override bool RequiresConstantRepaint()
-		{
-			return true;
-		}
+        protected SerializedProperty _debugCurrentSpeed;
+        protected SerializedProperty _updateMethod;
 
-		protected virtual void OnEnable()
-		{
-			_movingPlatformFree = target as MovingPlatformFree;
-			_debugCurrentSpeed = serializedObject.FindProperty("DebugCurrentSpeed");
-			_updateMethod = serializedObject.FindProperty("UpdateMethod");
-		}
+        public override bool RequiresConstantRepaint()
+        {
+            return true;
+        }
 
-		public override void OnInspectorGUI()
-		{
-			serializedObject.Update();
+        protected virtual void OnEnable()
+        {
+            _movingPlatformFree = target as MovingPlatformFree;
+            _debugCurrentSpeed = serializedObject.FindProperty("DebugCurrentSpeed");
+            _updateMethod = serializedObject.FindProperty("UpdateMethod");
+        }
 
-			DrawProperties();
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
 
-			serializedObject.ApplyModifiedProperties();
-		}
+            DrawProperties();
 
-		protected virtual void DrawProperties()
-		{
-			EditorGUILayout.PropertyField(_updateMethod);
-			EditorGUILayout.Space();
-			EditorGUILayout.LabelField("Debug");
-			EditorGUILayout.PropertyField(_debugCurrentSpeed);
-		}
-	}
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        protected virtual void DrawProperties()
+        {
+            EditorGUILayout.PropertyField(_updateMethod);
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Debug");
+            EditorGUILayout.PropertyField(_debugCurrentSpeed);
+        }
+    }
 }

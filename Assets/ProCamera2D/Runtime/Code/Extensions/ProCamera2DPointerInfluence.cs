@@ -26,7 +26,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemovePreMover(this);
         }
 
@@ -40,7 +40,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public void PreMove(float deltaTime)
         {
-            if(enabled)
+            if (enabled)
                 ApplyInfluence(deltaTime);
         }
 

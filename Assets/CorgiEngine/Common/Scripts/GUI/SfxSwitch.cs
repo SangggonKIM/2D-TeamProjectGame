@@ -8,16 +8,16 @@ using MoreMountains.Feedbacks;
 
 namespace MoreMountains.CorgiEngine
 {
-	public class SfxSwitch : CorgiMonoBehaviour
-	{
-		public virtual void On()
-		{
-			MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.UnmuteTrack, MMSoundManager.MMSoundManagerTracks.Sfx);
-		}
+    public class SfxSwitch : CorgiMonoBehaviour
+    {
+        public virtual void On()
+        {
+            MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.UnmuteTrack, MMSoundManager.MMSoundManagerTracks.Sfx);
+        }
 
-		public virtual void Off()
-		{
-			MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.MuteTrack, MMSoundManager.MMSoundManagerTracks.Sfx);
-		}
-	}
+        public virtual void Off()
+        {
+            MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.MuteTrack, MMSoundManager.MMSoundManagerTracks.Sfx);
+        }
+    }
 }

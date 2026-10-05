@@ -52,8 +52,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            
-            if(ProCamera2D)
+
+            if (ProCamera2D)
                 ProCamera2D.RemoveSizeDeltaChanger(this);
         }
 

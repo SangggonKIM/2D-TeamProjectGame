@@ -11,16 +11,17 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         [Range(0, 5)]
         public float Speed = 1.0f;
-        
+
         [Range(0, 5)]
         public float SpeedX = 1.0f;
-        
+
         [Range(0, 5)]
         public float SpeedY = 1.0f;
 
         public LayerMask LayerMask;
 
-        [HideInInspector][System.NonSerialized]
+        [HideInInspector]
+        [System.NonSerialized]
         public Transform CameraTransform;
     }
 
@@ -86,8 +87,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            
-            if(ProCamera2D)
+
+            if (ProCamera2D)
                 ProCamera2D.RemovePostMover(this);
         }
 
@@ -95,7 +96,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public void PostMove(float deltaTime)
         {
-            if(enabled)
+            if (enabled)
                 Move();
         }
 
@@ -105,13 +106,13 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         #endregion
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         void LateUpdate()
         {
-            if(!Application.isPlaying)
+            if (!Application.isPlaying)
                 Move();
         }
-        #endif
+#endif
 
         public void CalculateParallaxObjectsOffset()
         {
@@ -156,7 +157,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 {
                     // Rect
                     ParallaxLayers[i].ParallaxCamera.rect = ProCamera2D.GameCamera.rect;
-                    
+
                     // Position
                     float x = ParallaxHorizontal ? Vector3H(rootOffset) * (UseIndependentAxisSpeeds ? ParallaxLayers[i].SpeedX : ParallaxLayers[i].Speed) : Vector3H(rootOffset);
                     float y = ParallaxVertical ? Vector3V(rootOffset) * (UseIndependentAxisSpeeds ? ParallaxLayers[i].SpeedY : ParallaxLayers[i].Speed) : Vector3V(rootOffset);

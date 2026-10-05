@@ -13,8 +13,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
         public Pool pool;
 
         void OnDisable()
-        {  
-            pool.nextThing = gameObject;  
+        {
+            pool.nextThing = gameObject;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
     [RequireComponent(typeof(Camera))]
     public class ProCamera2D : MonoBehaviour, ISerializationCallbackReceiver
     {
-		public const string Title = "Pro Camera 2D";
+        public const string Title = "Pro Camera 2D";
         public static readonly Version Version = new Version("2.9.8");
 
         #region Inspector Variables
@@ -73,7 +73,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         /// <summary>Is the camera moving?</summary>
 		public bool IsMoving =>
-            Vector3H(_transform.localPosition) != Vector3H(_previousCameraPosition) || 
+            Vector3H(_transform.localPosition) != Vector3H(_previousCameraPosition) ||
             Vector3V(_transform.localPosition) != Vector3V(_previousCameraPosition);
 
         /// <summary>Update ProCamera2D's camera rect</summary>
@@ -96,11 +96,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         }
 
         public Vector2 CameraTargetPositionSmoothed
-        { 
+        {
             get => new(_cameraTargetHorizontalPositionSmoothed, _cameraTargetVerticalPositionSmoothed);
 
             set
-            { 
+            {
                 _cameraTargetHorizontalPositionSmoothed = value.x;
                 _cameraTargetVerticalPositionSmoothed = value.y;
             }
@@ -113,7 +113,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public Vector2 StartScreenSizeInWorldCoordinates { get; private set; }
 
-		public Vector2 ScreenSizeInWorldCoordinates { get; private set; }
+        public Vector2 ScreenSizeInWorldCoordinates { get; private set; }
 
         public Vector3 PreviousTargetsMidPoint { get; private set; }
 
@@ -138,7 +138,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         public Action<Vector2> OnCameraResize;
         public Action<float> OnUpdateScreenSizeFinished;
         public Action<float> OnDollyZoomFinished;
-        
+
         public Action OnReset;
 
         public Vector3? ExclusiveTargetPosition;
@@ -155,7 +155,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         public bool IsCameraPositionBottomBounded;
 
         public Camera GameCamera;
-        
+
         #endregion
 
 
@@ -171,16 +171,16 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         Coroutine _dollyZoomRoutine;
 
         List<Vector3> _influences = new List<Vector3>();
-        
+
         float _originalCameraDepthSign;
 
         float _previousCameraTargetHorizontalPositionSmoothed;
         float _previousCameraTargetVerticalPositionSmoothed;
         int _previousScreenWidth;
         int _previousScreenHeight;
-		Vector3 _previousCameraPosition;
+        Vector3 _previousCameraPosition;
 
-		WaitForFixedUpdate _waitForFixedUpdate = new WaitForFixedUpdate();
+        WaitForFixedUpdate _waitForFixedUpdate = new WaitForFixedUpdate();
 
         Transform _transform;
 
@@ -214,7 +214,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 GameCamera = GetComponent<Camera>();
             if (GameCamera == null)
                 Debug.LogError("Unity Camera not set and not found on the GameObject: " + gameObject.name);
-            
+
             // Reset the axis functions
             ResetAxisFunctions();
 
@@ -287,23 +287,23 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             _instance = null;
         }
 
-		#endregion
+        #endregion
 
 
-		#region Public Methods
+        #region Public Methods
 
-		/// <summary>Returns the current global offset on the horizontal axis</summary>
-		public float GetOffsetX()
-		{
-			return IsRelativeOffset ? OffsetX * ScreenSizeInWorldCoordinates.x * .5f : OffsetX;
-		}
+        /// <summary>Returns the current global offset on the horizontal axis</summary>
+        public float GetOffsetX()
+        {
+            return IsRelativeOffset ? OffsetX * ScreenSizeInWorldCoordinates.x * .5f : OffsetX;
+        }
 
-		/// <summary>Returns the current global offset on the vertical axis</summary>
-		public float GetOffsetY()
-		{
-			return IsRelativeOffset ? OffsetY * ScreenSizeInWorldCoordinates.y * .5f : OffsetY;
-		}
-		
+        /// <summary>Returns the current global offset on the vertical axis</summary>
+        public float GetOffsetY()
+        {
+            return IsRelativeOffset ? OffsetY * ScreenSizeInWorldCoordinates.y * .5f : OffsetY;
+        }
+
         /// <summary>Apply the given influence to the camera during this frame.</summary>
         /// <param name="influence">The vector representing the influence to be applied</param>
         public void ApplyInfluence(Vector2 influence)
@@ -363,12 +363,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             }
         }
 
-		/// <summary>Add multiple targets for the camera to follow.</summary>
-		/// <param name="cameraTargets">An array or list with the new targets</param>
-		public void AddCameraTargets(IList<CameraTarget> cameraTargets)
-		{
-			CameraTargets.AddRange(cameraTargets);
-		}
+        /// <summary>Add multiple targets for the camera to follow.</summary>
+        /// <param name="cameraTargets">An array or list with the new targets</param>
+        public void AddCameraTargets(IList<CameraTarget> cameraTargets)
+        {
+            CameraTargets.AddRange(cameraTargets);
+        }
 
         /// <summary>Gets the corresponding CameraTarget from an object's transform.</summary>
         /// <param name="targetTransform">The Transform of the target</param>
@@ -460,7 +460,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             return AdjustCameraTargetInfluence(cameraTarget, targetInfluenceH, targetInfluenceV, duration);
         }
-        
+
         /// <summary>Translates the camera by the specified amount while maintaining internal values</summary>
         /// <param name="translateAmount">The camera will be offset by this amount</param>
         public void TranslateCamera(Vector2 translateAmount)
@@ -472,10 +472,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             CameraTargetPosition = newPos;
             TargetsMidPoint = newPos;
             PreviousTargetsMidPoint = newPos;
- 
+
             _cameraTargetHorizontalPositionSmoothed += translateAmount.x;
             _cameraTargetVerticalPositionSmoothed += translateAmount.y;
- 
+
             _previousCameraTargetHorizontalPositionSmoothed += translateAmount.x;
             _previousCameraTargetVerticalPositionSmoothed += translateAmount.y;
         }
@@ -501,7 +501,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             else
                 ResetMovement();
 
-            if(resetSize)
+            if (resetSize)
                 ResetSize();
 
             if (resetExtensions)
@@ -534,16 +534,16 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             SetScreenSize(StartScreenSizeInWorldCoordinates.y / 2);
         }
 
-		/// <summary>
-		/// Resets the start camera size that is used for some calculations.
-		/// </summary>
-		public void ResetStartSize(Vector2 newSize = default(Vector2))
-		{
-			if(newSize != default(Vector2))
-				StartScreenSizeInWorldCoordinates = newSize;
-			else
-				StartScreenSizeInWorldCoordinates = Utils.GetScreenSizeInWorldCoords(GameCamera, Mathf.Abs(Vector3D(_transform.localPosition)));
-		}
+        /// <summary>
+        /// Resets the start camera size that is used for some calculations.
+        /// </summary>
+        public void ResetStartSize(Vector2 newSize = default(Vector2))
+        {
+            if (newSize != default(Vector2))
+                StartScreenSizeInWorldCoordinates = newSize;
+            else
+                StartScreenSizeInWorldCoordinates = Utils.GetScreenSizeInWorldCoords(GameCamera, Mathf.Abs(Vector3D(_transform.localPosition)));
+        }
 
         /// <summary>
         /// Resets all active extensions to their start values.
@@ -589,7 +589,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 StopCoroutine(_updateScreenSizeCoroutine);
         }
 
-		/// <summary>Recalculates the camera size in world coordinates. Call only if you change the camera size manually outside of ProCamera2D.</summary>
+        /// <summary>Recalculates the camera size in world coordinates. Call only if you change the camera size manually outside of ProCamera2D.</summary>
         public void CalculateScreenSize()
         {
             GameCamera.ResetAspect();
@@ -616,7 +616,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (!enabled)
                 return;
-            
+
             if (GameCamera.orthographic)
             {
                 Debug.LogWarning("Dolly zooming is only supported on perspective cameras");
@@ -633,8 +633,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 GameCamera.fieldOfView = targetFOV;
 
                 _transform.localPosition = VectorHVD(
-                    Vector3H(_transform.localPosition), 
-                    Vector3V(_transform.localPosition), 
+                    Vector3H(_transform.localPosition),
+                    Vector3V(_transform.localPosition),
                     GetCameraDistanceForFOV(GameCamera.fieldOfView, ScreenSizeInWorldCoordinates.y) * _originalCameraDepthSign);
             }
             else
@@ -651,8 +651,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         /// <param name="deltaTime">The time in seconds it took to complete the last frame</param>
         public void Move(float deltaTime)
         {
-			// Save previous camera position
-			_previousCameraPosition = _transform.localPosition;
+            // Save previous camera position
+            _previousCameraPosition = _transform.localPosition;
 
             //Detect resolution changes
             if (Screen.width != _previousScreenWidth || Screen.height != _previousScreenHeight)
@@ -662,7 +662,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             DeltaTime = deltaTime;
             if (DeltaTime < .0001f)
                 return;
-                
+
             // Pre-Move update
             if (PreMoveUpdate != null)
                 PreMoveUpdate(DeltaTime);
@@ -762,7 +762,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 _postMovers[i].PostMove(deltaTime);
             }
-            
+
             // Post-Move update
             if (PostMoveUpdate != null)
                 PostMoveUpdate(DeltaTime);
@@ -811,7 +811,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     VectorHV = (h, v) => new Vector3(0, v, h);
                     VectorHVD = (h, v, d) => new Vector3(d, v, h);
                     break;
-            } 
+            }
         }
 
         Vector3 GetTargetsWeightedMidPoint(ref List<CameraTarget> targets)
@@ -941,8 +941,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 GameCamera.fieldOfView = newFOV;
 
                 _transform.localPosition = VectorHVD(
-                    Vector3H(_transform.localPosition), 
-                    Vector3V(_transform.localPosition), 
+                    Vector3H(_transform.localPosition),
+                    Vector3V(_transform.localPosition),
                     GetCameraDistanceForFOV(newFOV, ScreenSizeInWorldCoordinates.y) * _originalCameraDepthSign);
 
                 yield return GetYield();
@@ -952,17 +952,17 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             if (OnDollyZoomFinished != null)
                 OnDollyZoomFinished(newFOV);
-            
+
             if (OnUpdateScreenSizeFinished != null)
                 OnUpdateScreenSizeFinished(ScreenSizeInWorldCoordinates.y * .5f);
         }
 
         void SetScreenSize(float newSize)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (_transform == null)
                 _transform = transform;
-            #endif
+#endif
 
             if (GameCamera.orthographic)
             {
@@ -980,8 +980,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 else
                 {
                     _transform.localPosition = VectorHVD(
-                        Vector3H(_transform.localPosition), 
-                        Vector3V(_transform.localPosition), 
+                        Vector3H(_transform.localPosition),
+                        Vector3V(_transform.localPosition),
                         (newSize / Mathf.Tan(GameCamera.fieldOfView * 0.5f * Mathf.Deg2Rad)) * _originalCameraDepthSign);
                 }
             }
@@ -1106,7 +1106,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         #endregion
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         int _drawGizmosCounter;
 
         void OnDrawGizmos()
@@ -1145,7 +1145,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             Gizmos.color = EditorPrefsX.GetColor(PrefsData.OverallOffsetColorKey, PrefsData.OverallOffsetColorValue);
             if (OffsetX != 0 || OffsetY != 0)
             {
-                if(IsRelativeOffset)
+                if (IsRelativeOffset)
                     Utils.DrawArrowForGizmo(targetsMidPoint, VectorHV((OffsetX * cameraDimensions.x * .5f), (OffsetY * cameraDimensions.y * .5f)), .04f * cameraDimensions.y);
                 else
                     Utils.DrawArrowForGizmo(targetsMidPoint, VectorHV(OffsetX, OffsetY), .04f * cameraDimensions.y);
@@ -1154,10 +1154,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // Camera target position
             Gizmos.color = EditorPrefsX.GetColor(PrefsData.CamTargetPositionColorKey, PrefsData.CamTargetPositionColorValue);
             var cameraTargetPosition = targetsMidPoint + _influencesSum + VectorHV((OffsetX * cameraDimensions.x * .5f), (OffsetY * cameraDimensions.y * .5f));
-            
-            if(!IsRelativeOffset)
+
+            if (!IsRelativeOffset)
                 cameraTargetPosition = targetsMidPoint + _influencesSum + VectorHV(OffsetX, OffsetY);
-    
+
             var cameraTargetPos = VectorHVD(Vector3H(cameraTargetPosition), Vector3V(cameraTargetPosition), cameraDepthOffset);
             Gizmos.DrawWireSphere(cameraTargetPos, .015f * cameraDimensions.y);
 
@@ -1175,6 +1175,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             var currentCameraPos = VectorHVD(Vector3H(transform.position), Vector3V(transform.position), cameraDepthOffset);
             Gizmos.DrawWireSphere(currentCameraPos, .025f * cameraDimensions.y);
         }
-        #endif
+#endif
     }
 }

@@ -10,10 +10,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DZoomToFitTargets = (ProCamera2DZoomToFitTargets)target;
 
-            if(proCamera2DZoomToFitTargets.ProCamera2D == null)
+            if (proCamera2DZoomToFitTargets.ProCamera2D == null)
                 EditorGUILayout.HelpBox("ProCamera2D is not set.", MessageType.Error, true);
 
             DrawDefaultInspector();
@@ -35,7 +35,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             if (proCamera2DZoomToFitTargets.ZoomOutBorder >= 1f)
                 proCamera2DZoomToFitTargets.ZoomOutBorder = 1f;
-    
+
             if (proCamera2DZoomToFitTargets.ZoomInSmoothness < 0f)
                 proCamera2DZoomToFitTargets.ZoomInSmoothness = 0f;
 

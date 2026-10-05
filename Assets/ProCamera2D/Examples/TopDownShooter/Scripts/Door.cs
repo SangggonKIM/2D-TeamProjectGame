@@ -54,7 +54,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
                 case DoorDirection.Left:
                     Move(_origPos - new Vector3(MovementRange, 0, 0), AnimDuration, openDelay);
                     break;
-            
+
                 case DoorDirection.Right:
                     Move(_origPos + new Vector3(MovementRange, 0, 0), AnimDuration, openDelay);
                     break;
@@ -71,7 +71,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
         {
             if (_moveCoroutine != null)
                 StopCoroutine(_moveCoroutine);
-        
+
             _moveCoroutine = StartCoroutine(MoveRoutine(newPos, duration, delay));
         }
 

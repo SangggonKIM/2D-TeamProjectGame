@@ -15,7 +15,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             _script = MonoScript.FromMonoBehaviour((ProCamera2DContentFitter)target);
         }
 
@@ -23,7 +23,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DAspectRatio = (ProCamera2DContentFitter)target;
             if (proCamera2DAspectRatio.ProCamera2D == null)
             {
@@ -41,10 +41,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             // ProCamera2D
             _tooltip = new GUIContent("Pro Camera 2D", "");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_pc2D"), _tooltip);
-    
+
             // Mode
             var changedMode = false;
-            EditorGUI.BeginChangeCheck ();
+            EditorGUI.BeginChangeCheck();
             _tooltip = new GUIContent("Content Fitter Mode", "");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("_contentFitterMode"), _tooltip);
             if (EditorGUI.EndChangeCheck())
@@ -52,60 +52,60 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 changedMode = true;
                 proCamera2DAspectRatio.ProCamera2D.GameCamera.ResetProjectionMatrix();
             }
-            
+
             switch (proCamera2DAspectRatio.ContentFitterMode)
             {
                 case ContentFitterMode.FixedHeight:
                     _tooltip = new GUIContent("Target Height", "");
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("_targetHeight"), _tooltip);
                     break;
-                    
+
                 case ContentFitterMode.FixedWidth:
                     _tooltip = new GUIContent("Target Width", "");
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("_targetWidth"), _tooltip);
                     break;
-                    
+
                 case ContentFitterMode.AspectRatio:
                     var changedWidth = false;
                     var changedHeight = false;
-                    
+
                     // Target Width
-                    EditorGUI.BeginChangeCheck ();
+                    EditorGUI.BeginChangeCheck();
                     _tooltip = new GUIContent("Target Width", "");
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("_targetWidth"), _tooltip);
-                    if (EditorGUI.EndChangeCheck ())
+                    if (EditorGUI.EndChangeCheck())
                         changedWidth = true;
-                    
+
                     // Target Height
-                    EditorGUI.BeginChangeCheck ();
+                    EditorGUI.BeginChangeCheck();
                     _tooltip = new GUIContent("Target Height", "");
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("_targetHeight"), _tooltip);
-                    if (EditorGUI.EndChangeCheck ())
+                    if (EditorGUI.EndChangeCheck())
                         changedHeight = true;
-                    
+
                     // Target Aspect Ratio
-                    EditorGUI.BeginChangeCheck ();
+                    EditorGUI.BeginChangeCheck();
                     _tooltip = new GUIContent("Target Aspect Ratio", "");
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("_targetAspectRatio"), _tooltip);
-                    if (EditorGUI.EndChangeCheck ())
+                    if (EditorGUI.EndChangeCheck())
                     {
                         changedWidth = true;
                         proCamera2DAspectRatio.TargetWidth =
                             proCamera2DAspectRatio.TargetHeight * proCamera2DAspectRatio.TargetAspectRatio;
                     }
-                    
+
                     // Horizontal Alignment
                     _tooltip = new GUIContent("Horizontal Alignment", "");
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("HorizontalAlignment"), _tooltip);
-                    
+
                     // Vertical Alignment
                     _tooltip = new GUIContent("Vertical Alignment", "");
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("VerticalAlignment"), _tooltip);
-                    
+
                     // Use letterbox
                     _tooltip = new GUIContent("Use Letter/Pillarboxing", "");
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("_useLetterOrPillarboxing"), _tooltip);
-                    
+
                     serializedObject.ApplyModifiedProperties();
 
                     if (changedWidth)
@@ -120,10 +120,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     }
                     break;
             }
-            
+
             serializedObject.ApplyModifiedProperties();
-            
-            if(changedMode && proCamera2DAspectRatio.ContentFitterMode == ContentFitterMode.AspectRatio)
+
+            if (changedMode && proCamera2DAspectRatio.ContentFitterMode == ContentFitterMode.AspectRatio)
                 proCamera2DAspectRatio.TargetWidth = proCamera2DAspectRatio.TargetHeight * proCamera2DAspectRatio.TargetAspectRatio;
 
             if (proCamera2DAspectRatio.TargetWidth < .1f)

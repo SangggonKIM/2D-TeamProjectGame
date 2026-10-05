@@ -10,7 +10,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DGeometryBoundaries = (ProCamera2DGeometryBoundaries)target;
 
             if (proCamera2DGeometryBoundaries.ProCamera2D == null)
@@ -23,7 +23,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
             if (proCamera2DGeometryBoundaries.ProCamera2D.CenterTargetOnStart)
                 EditorGUILayout.HelpBox("Centering on target at start while using geometry boundaries might cause the camera to get stuck.", MessageType.Warning, true);
-            
+
         }
     }
 }

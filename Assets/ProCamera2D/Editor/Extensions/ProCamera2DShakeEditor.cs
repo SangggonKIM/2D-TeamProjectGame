@@ -134,7 +134,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 // Toggle to enable on start
                 if (!Application.isPlaying)
                 {
-                    if(GUI.Toggle(new Rect(
+                    if (GUI.Toggle(new Rect(
                             rect.x + 1 * rect.width / 4f + 5,
                             rect.y - 2,
                             rect.width / 4f - 5,
@@ -171,15 +171,15 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                             rect.x + 3 * rect.width / 4f + 5,
                             rect.y - 2,
                             rect.width / 4f - 5,
-                    EditorGUIUtility.singleLineHeight * 1.1f), 
-                        (proCamera2DShake.CurrentConstantShakePreset != null && 
+                    EditorGUIUtility.singleLineHeight * 1.1f),
+                        (proCamera2DShake.CurrentConstantShakePreset != null &&
 #if UNITY_6000_4_OR_NEWER
                          proCamera2DShake.CurrentConstantShakePreset.GetEntityId() == preset.GetEntityId()) ? "Disable" : "Enable"))
 #else
                          proCamera2DShake.CurrentConstantShakePreset.GetInstanceID() == preset.GetInstanceID()) ? "Disable" : "Enable"))
 #endif
                 {
-                    if (proCamera2DShake.CurrentConstantShakePreset == null || 
+                    if (proCamera2DShake.CurrentConstantShakePreset == null ||
 #if UNITY_6000_4_OR_NEWER
                         proCamera2DShake.CurrentConstantShakePreset.GetEntityId() != preset.GetEntityId())
 #else
@@ -228,9 +228,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             EditorGUI.BeginChangeCheck();
-            
+
             var proCamera2DShake = (ProCamera2DShake)target;
 
             if (proCamera2DShake.ProCamera2D == null)

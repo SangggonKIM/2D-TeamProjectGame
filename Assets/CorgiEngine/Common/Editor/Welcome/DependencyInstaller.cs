@@ -11,9 +11,9 @@ using UnityEditor.SceneManagement;
 
 namespace MoreMountains.CorgiEngine
 {
-	public class DependencyInstaller : Editor
-	{
-		/*public class AfterImport : AssetPostprocessor
+    public class DependencyInstaller : Editor
+    {
+        /*public class AfterImport : AssetPostprocessor
 		{
 		    static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
 		    {
@@ -25,12 +25,12 @@ namespace MoreMountains.CorgiEngine
 		            }
 		        }
 		    }
-		}   */     
+		}   */
 
-		/*public static void ReloadCurrentScene()
+        /*public static void ReloadCurrentScene()
 		{
 		    string currentScenePath = EditorSceneManager.GetActiveScene().path;
 		    EditorSceneManager.OpenScene(currentScenePath);
 		}*/
-	}
+    }
 }

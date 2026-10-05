@@ -8,6 +8,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
     /// </summary>
     public class ProCamera2DParallaxObject : MonoBehaviour
     {
-    
+
     }
 }

@@ -17,7 +17,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public bool RepeatHorizontal
         {
-            get{ return _repeatHorizontal; }
+            get { return _repeatHorizontal; }
             set
             {
                 _repeatHorizontal = value;
@@ -29,7 +29,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public bool RepeatVertical
         {
-            get{ return _repeatVertical; }
+            get { return _repeatVertical; }
             set
             {
                 _repeatVertical = value;
@@ -67,7 +67,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemovePostMover(this);
         }
 
@@ -75,9 +75,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public void PostMove(float deltaTime)
         {
-            if(!enabled)
+            if (!enabled)
                 return;
-            
+
             // Get screen size at the object depth
             var cameraSize = Utils.GetScreenSizeInWorldCoords(CameraToUse, Vector3D(ProCamera2D.LocalPosition - _objStartPosition));
 
@@ -126,7 +126,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         public void SetRepeatingObject(Transform objectToRepeat, bool isExistingObject)
         {
             ObjectToRepeat = objectToRepeat;
-            
+
             if (ObjectToRepeat == null)
             {
                 Debug.LogWarning("ProCamera2D Repeater extension - No ObjectToRepeat defined!");
@@ -134,7 +134,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             }
 
             _objStartPosition = new Vector3(
-                Vector3H(ObjectToRepeat.position), 
+                Vector3H(ObjectToRepeat.position),
                 Vector3V(ObjectToRepeat.position),
                 Vector3D(ObjectToRepeat.position));
 
@@ -145,14 +145,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     Destroy(_allRepeatedObjects[i].Transform.gameObject);
                 }
             }
-            
+
             _allRepeatedObjects = new List<RepeatedObject>();
             _inactiveRepeatedObjects = new Queue<RepeatedObject>();
             _occupiedIndices = new Dictionary<IntPoint, bool>();
             _prevStartIndex = new IntPoint();
             _prevEndIndex = new IntPoint();
-            
-            if(isExistingObject)
+
+            if (isExistingObject)
                 InitCopy(ObjectToRepeat);
         }
 
@@ -198,7 +198,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 for (int j = startIndex.Y; j <= endIndex.Y; j++)
                 {
                     // Place the copies on the provided range
-                    var gridPos = new IntPoint(i, j); 
+                    var gridPos = new IntPoint(i, j);
                     var isIndexOccupied = false;
                     if (!_occupiedIndices.TryGetValue(gridPos, out isIndexOccupied))
                     {
@@ -208,10 +208,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                         // Set index as occupied
                         _occupiedIndices[gridPos] = true;
-                    
+
                         // Retrieve item from inactive list
                         var repeatedObject = _inactiveRepeatedObjects.Dequeue();
-                    
+
                         // Position it on-screen
                         PositionObject(repeatedObject, gridPos);
                     }
@@ -225,7 +225,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 Transform = newCopy
             };
-            
+
             repeatedObject.Transform.SetParent(ObjectToRepeat.parent);
 
             _allRepeatedObjects.Add(repeatedObject);
@@ -253,12 +253,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             FillGrid(_prevStartIndex, _prevEndIndex);
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         void OnDrawGizmosSelected()
         {
             if (Application.isPlaying)
                 return;
-            
+
             // Don't draw gizmos on other cameras
             if (Camera.current != CameraToUse &&
                 ((UnityEditor.SceneView.lastActiveSceneView != null && Camera.current != UnityEditor.SceneView.lastActiveSceneView.camera) ||
@@ -285,10 +285,10 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 }
             }
         }
-        #endif
+#endif
     }
 
-    struct IntPoint: IEquatable<IntPoint>
+    struct IntPoint : IEquatable<IntPoint>
     {
         public static IntPoint MaxValue = new IntPoint
         {
