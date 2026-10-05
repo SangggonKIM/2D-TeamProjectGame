@@ -4,6 +4,6 @@
     {
         float AdjustSize(float deltaTime, float originalDelta);
 
-        int SDCOrder { get; set;}
+        int SDCOrder { get; set; }
     }
 }

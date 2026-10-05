@@ -10,8 +10,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         public float TargetInfluence
         {
-            set 
-            { 
+            set
+            {
                 TargetInfluenceH = value;
                 TargetInfluenceV = value;
             }

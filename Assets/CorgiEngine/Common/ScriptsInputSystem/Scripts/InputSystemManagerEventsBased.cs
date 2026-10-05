@@ -16,7 +16,7 @@ namespace MoreMountains.CorgiEngine
     /// You can see an example of how to set it up in the MinimalLevel_InputSystem_Multiplayer demo scene
     /// </summary>
     public class InputSystemManagerEventsBased : InputManager
-    {   
+    {
         public void OnPrimaryMovement(InputValue value) { _primaryMovement = value.Get<Vector2>(); }
         public void OnSecondaryMovement(InputValue value) { _secondaryMovement = value.Get<Vector2>(); }
 

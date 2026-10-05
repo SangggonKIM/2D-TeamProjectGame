@@ -33,7 +33,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (ProCamera2D == null)
                 return;
-            
+
             _startCamSize = ProCamera2D.ScreenSizeInWorldCoordinates.y * .5f;
             _initialCamSize = _startCamSize;
             _targetCamSize = _startCamSize;
@@ -146,7 +146,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             ProCamera2D.UpdateScreenSize(_targetCamSizeSmoothed);
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         override protected void DrawGizmos()
         {
             _exclusiveInfluencePercentage = ExclusiveInfluencePercentage;
@@ -166,22 +166,22 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 finalTargetSize = TargetZoom;
             else
                 finalTargetSize = Mathf.Abs(Application.isPlaying ? _initialCamDepth : Vector3D(ProCamera2D.transform.localPosition)) * Mathf.Tan(TargetZoom * 0.5f * Mathf.Deg2Rad);
-            
+
             Gizmos.DrawIcon(
                 VectorHVD(
-                    Vector3H(transform.position), 
-                    Vector3V(transform.position), 
-                    cameraDepthOffset), 
-                startCamSize > finalTargetSize ? "ProCamera2D/gizmo_icon_zoom_in.png" : "ProCamera2D/gizmo_icon_zoom_out.png", 
+                    Vector3H(transform.position),
+                    Vector3V(transform.position),
+                    cameraDepthOffset),
+                startCamSize > finalTargetSize ? "ProCamera2D/gizmo_icon_zoom_in.png" : "ProCamera2D/gizmo_icon_zoom_out.png",
                 false);
 
             if (ResetSizeOnExit)
                 Gizmos.DrawIcon(
                     VectorHVD(
-                        Vector3H(transform.position), 
-                        Vector3V(transform.position), 
-                        cameraDepthOffset), 
-                    "ProCamera2D/gizmo_icon_reset.png", 
+                        Vector3H(transform.position),
+                        Vector3V(transform.position),
+                        cameraDepthOffset),
+                    "ProCamera2D/gizmo_icon_reset.png",
                     false);
         }
 
@@ -189,7 +189,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (ProCamera2D == null)
                 return;
-            
+
             var gameCamera = ProCamera2D.GetComponent<Camera>();
             var cameraDimensions = Utils.GetScreenSizeInWorldCoords(gameCamera, Mathf.Abs(Vector3D(ProCamera2D.transform.localPosition)));
             float cameraDepthOffset = Vector3D(ProCamera2D.transform.localPosition) + Mathf.Abs(Vector3D(ProCamera2D.transform.localPosition)) * Vector3D(ProCamera2D.transform.forward);
@@ -209,6 +209,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 1f);
             Gizmos.DrawWireCube(cameraCenter, VectorHV(finalTargetSize * 2 * ProCamera2D.GameCamera.aspect, finalTargetSize * 2));
         }
-        #endif
+#endif
     }
 }

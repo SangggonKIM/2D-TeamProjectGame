@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PatrolWaypoint : MonoBehaviour 
+public class PatrolWaypoint : MonoBehaviour
 {
     public float StopProbability = .5f;
     public float StopDuration = 3f;

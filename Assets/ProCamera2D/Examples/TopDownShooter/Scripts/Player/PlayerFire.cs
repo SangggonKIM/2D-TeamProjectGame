@@ -32,7 +32,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
         {
             while (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
             {
-                var bullet = BulletPool.nextThing; 
+                var bullet = BulletPool.nextThing;
                 bullet.transform.position = WeaponTip.position;
                 bullet.transform.rotation = _transform.rotation;
 
@@ -40,7 +40,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
                 var radians = angle * Mathf.Deg2Rad;
                 var vForce = new Vector2((float)Mathf.Sin(radians), (float)Mathf.Cos(radians)) * FireShakeForce;
 
-                ProCamera2DShake.Instance.ApplyShakesTimed(new Vector2[]{ vForce }, new Vector3[]{Vector3.zero}, new float[]{ FireShakeDuration });
+                ProCamera2DShake.Instance.ApplyShakesTimed(new Vector2[] { vForce }, new Vector3[] { Vector3.zero }, new float[] { FireShakeDuration });
 
                 yield return new WaitForSeconds(FireRate);
             }

@@ -7,26 +7,26 @@ using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.FeedbacksForThirdParty
 {
-	/// <summary>
-	/// Use this feedback to play a preset haptic, limited but super simple predifined haptic patterns
-	/// </summary>
-	[AddComponentMenu("")]
-	[System.Serializable]
-	#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    /// <summary>
+    /// Use this feedback to play a preset haptic, limited but super simple predifined haptic patterns
+    /// </summary>
+    [AddComponentMenu("")]
+    [System.Serializable]
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 	[FeedbackPath("Haptics/Haptic Preset")]
-	#endif    
-	[MovedFrom(false, null, "MoreMountains.Feedbacks.NiceVibrations")]
-	[FeedbackHelp("Use this feedback to play a preset haptic, limited but super simple predifined haptic patterns")]
-	public class MMF_NVPreset : MMF_Feedback
-	{
-		#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+#endif
+    [MovedFrom(false, null, "MoreMountains.Feedbacks.NiceVibrations")]
+    [FeedbackHelp("Use this feedback to play a preset haptic, limited but super simple predifined haptic patterns")]
+    public class MMF_NVPreset : MMF_Feedback
+    {
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 		/// a static bool used to disable all feedbacks of this type at once
 		public static bool FeedbackTypeAuthorized = true;
-		#if UNITY_EDITOR
+#if UNITY_EDITOR
 		public override bool HasCustomInspectors => true;
 		public override Color FeedbackColor { get { return MMFeedbacksInspectorColors.HapticsColor; } }
 		public override string RequiredTargetText { get { return Preset.ToString();  } }
-		#endif
+#endif
     
 		[MMFInspectorGroup("Haptic Preset", true, 21)]
 		/// the preset to play with this feedback
@@ -73,8 +73,8 @@ namespace MoreMountains.FeedbacksForThirdParty
 			HapticPatterns.PlayPreset(Preset);
 		}
 		
-		#else
-		protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f) { }
-		#endif
-	}    
+#else
+        protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f) { }
+#endif
+    }
 }

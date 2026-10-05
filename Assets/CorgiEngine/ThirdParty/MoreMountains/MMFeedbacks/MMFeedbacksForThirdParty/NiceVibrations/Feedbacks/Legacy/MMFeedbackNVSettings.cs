@@ -5,13 +5,13 @@ using Lofelt.NiceVibrations;
 
 namespace MoreMountains.FeedbacksForThirdParty
 {
-	/// <summary>
-	/// A class used to store and manage common Nice Vibrations feedback settings
-	/// </summary>
-	[System.Serializable]
-	public class MMFeedbackNVSettings
-	{
-		#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    /// <summary>
+    /// A class used to store and manage common Nice Vibrations feedback settings
+    /// </summary>
+    [System.Serializable]
+    public class MMFeedbackNVSettings
+    {
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 		/// whether or not to force this haptic to play on a specific gamepad
 		[Tooltip("whether or not to force this haptic to play on a specific gamepad")]
 		public bool ForceGamepadID = false;
@@ -48,12 +48,12 @@ namespace MoreMountains.FeedbacksForThirdParty
 		/// <returns></returns>
 		public virtual bool CanPlay()
 		{
-			#if UNITY_IOS || UNITY_ANDROID
+#if UNITY_IOS || UNITY_ANDROID
             if (OnlyPlayIfHapticsSupported && !DeviceCapabilities.isVersionSupported)
             {
                 return false;
             }
-			#endif
+#endif
 
 			if (OnlyPlayIfAdvancedRequirementsMet && !DeviceCapabilities.meetsAdvancedRequirements)
 			{
@@ -72,6 +72,6 @@ namespace MoreMountains.FeedbacksForThirdParty
 
 			return true;
 		}
-		#endif
-	}
+#endif
+    }
 }

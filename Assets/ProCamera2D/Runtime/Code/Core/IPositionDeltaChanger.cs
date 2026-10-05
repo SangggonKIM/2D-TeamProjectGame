@@ -6,6 +6,6 @@ namespace Com.LuisPedroFonseca.ProCamera2D
     {
         Vector3 AdjustDelta(float deltaTime, Vector3 originalDelta);
 
-        int PDCOrder { get; set;}
+        int PDCOrder { get; set; }
     }
 }

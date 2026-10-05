@@ -7,25 +7,25 @@ using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.FeedbacksForThirdParty
 {
-	/// <summary>
-	/// Use this feedback to play an Emphasis haptics, short haptic bursts whose amplitude and frequency can be controlled in real time, also called Transients in CoreHaptics/iOS
-	/// </summary>
-	[AddComponentMenu("")]
-	[System.Serializable]
-	#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    /// <summary>
+    /// Use this feedback to play an Emphasis haptics, short haptic bursts whose amplitude and frequency can be controlled in real time, also called Transients in CoreHaptics/iOS
+    /// </summary>
+    [AddComponentMenu("")]
+    [System.Serializable]
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 	[FeedbackPath("Haptics/Haptic Emphasis")]
-	#endif 
-	[MovedFrom(false, null, "MoreMountains.Feedbacks.NiceVibrations")]
-	[FeedbackHelp("Use this feedback to play an Emphasis haptics, short haptic bursts whose amplitude and frequency can be controlled in real time, also called Transients in CoreHaptics/iOS")]
-	public class MMF_NVEmphasis : MMF_Feedback
-	{
-		#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+#endif
+    [MovedFrom(false, null, "MoreMountains.Feedbacks.NiceVibrations")]
+    [FeedbackHelp("Use this feedback to play an Emphasis haptics, short haptic bursts whose amplitude and frequency can be controlled in real time, also called Transients in CoreHaptics/iOS")]
+    public class MMF_NVEmphasis : MMF_Feedback
+    {
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 		/// a static bool used to disable all feedbacks of this type at once
 		public static bool FeedbackTypeAuthorized = true;
-		#if UNITY_EDITOR
+#if UNITY_EDITOR
 		public override bool HasCustomInspectors => true;
 		public override Color FeedbackColor { get { return MMFeedbacksInspectorColors.HapticsColor; } }
-		#endif
+#endif
         
 		[MMFInspectorGroup("Haptic Amplitude", true, 23)]
 		/// the minimum amplitude at which this clip should play (amplitude will be randomized between MinAmplitude and MaxAmplitude)
@@ -90,8 +90,8 @@ namespace MoreMountains.FeedbacksForThirdParty
 			HapticPatterns.PlayEmphasis(amplitude, frequency);
 		}
 		
-		#else
-		protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f) { }
-		#endif
-	}    
+#else
+        protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f) { }
+#endif
+    }
 }

@@ -22,8 +22,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 _contentFitterMode = value;
                 ProCamera2D.GameCamera.ResetProjectionMatrix();
-                
-                if(_contentFitterMode == ContentFitterMode.AspectRatio)
+
+                if (_contentFitterMode == ContentFitterMode.AspectRatio)
                     TargetWidth = TargetHeight * TargetAspectRatio;
             }
             get { return _contentFitterMode; }
@@ -45,7 +45,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
         private static float ScreenAspectRatio
         {
-            get { return Screen.width / (float) Screen.height; }
+            get { return Screen.width / (float)Screen.height; }
         }
 
         public float TargetHeight
@@ -59,7 +59,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         }
         [SerializeField]
         private float _targetHeight = 5.625f;
-        
+
 
         public float TargetWidth
         {
@@ -129,14 +129,14 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemoveSizeOverrider(this);
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
-            
+
             ProCamera2D.GameCamera.ResetProjectionMatrix();
         }
 
@@ -144,12 +144,12 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         protected override void DrawGizmosSelected()
         {
             base.DrawGizmosSelected();
-            
+
             var fillColor = EditorPrefsX.GetColor(PrefsData.FitterFillColorKey, PrefsData.FitterFillColorValue);
             var lineColor = EditorPrefsX.GetColor(PrefsData.FitterLineColorKey, PrefsData.FitterFillColorValue);
 
             Gizmos.color = lineColor;
-                
+
             var camSize =
                 Utils.GetScreenSizeInWorldCoords(ProCamera2D.GameCamera, Mathf.Abs(Vector3D(transform.localPosition)));
             var camPos = VectorHVD(Vector3H(ProCamera2D.transform.position), Vector3V(ProCamera2D.transform.position),
@@ -216,7 +216,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 Utils.DrawArrowForGizmo(camPos, -ProCamera2D.transform.up * TargetHeight * .5f, camSize.y * .03f);
             }
         }
-        #endif
+#endif
 
         #region ISizeOverrider implementation
 
@@ -272,22 +272,22 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         IEnumerator UpdateFixedAspectRatio()
         {
             var isPillarbox = TargetHeight * .5f > TargetWidth * .5f / ScreenAspectRatio;
-                        
-            if(_prevUseLetterOrPillarboxing != _useLetterOrPillarboxing)
+
+            if (_prevUseLetterOrPillarboxing != _useLetterOrPillarboxing)
                 ToggleLetterPillarboxing(_useLetterOrPillarboxing);
 
             if (UseLetterOrPillarboxing)
             {
                 UpdateLetterPillarbox(
-                    ProCamera2D.GameCamera, 
-                    isPillarbox, 
+                    ProCamera2D.GameCamera,
+                    isPillarbox,
                     TargetAspectRatio,
                     HorizontalAlignment,
                     VerticalAlignment);
             }
-            
+
             yield return new WaitForEndOfFrame();
-            
+
             UpdateCameraAlignment(
                 ProCamera2D.GameCamera,
                 isPillarbox,
@@ -319,7 +319,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     verticalOffset,
                     1, 1), cam.projectionMatrix);
         }
-        
+
         private static Matrix4x4 GetScissorRect(Rect targetScissor, Matrix4x4 camProjectionMatrix)
         {
             var m2 = Matrix4x4.TRS(
@@ -335,20 +335,20 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         }
 
         private static void UpdateLetterPillarbox(
-            Camera cam, 
-            bool isPillarbox, 
-            float targetAspectRatio, 
-            float horizontalAlignment, 
+            Camera cam,
+            bool isPillarbox,
+            float targetAspectRatio,
+            float horizontalAlignment,
             float verticalAlignment)
         {
             if (isPillarbox)
             {
-                var inset = 1.0f - targetAspectRatio / (Screen.width / (float) Screen.height);
+                var inset = 1.0f - targetAspectRatio / (Screen.width / (float)Screen.height);
                 cam.rect = new Rect((inset / 2f) + (inset / 2f) * horizontalAlignment, 0.0f, 1.0f - inset, 1.0f);
             }
             else
             {
-                var inset = 1.0f - (Screen.width / (float) Screen.height) / targetAspectRatio;
+                var inset = 1.0f - (Screen.width / (float)Screen.height) / targetAspectRatio;
                 cam.rect = new Rect(0.0f, (inset / 2f) + (inset / 2f) * verticalAlignment, 1.0f, 1.0f - inset);
             }
         }
@@ -362,8 +362,8 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             {
                 _letterPillarboxingCamera.gameObject.SetActive(true);
                 UpdateLetterPillarbox(
-                    ProCamera2D.GameCamera, 
-                    TargetHeight * .5f > TargetWidth * .5f / ScreenAspectRatio, 
+                    ProCamera2D.GameCamera,
+                    TargetHeight * .5f > TargetWidth * .5f / ScreenAspectRatio,
                     TargetAspectRatio,
                     HorizontalAlignment,
                     VerticalAlignment);
@@ -374,7 +374,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                     _letterPillarboxingCamera.gameObject.SetActive(false);
 
                 ProCamera2D.GameCamera.rect = new Rect(0, 0, 1, 1);
-                
+
                 UpdateCameraAlignment(
                     ProCamera2D.GameCamera,
                     TargetHeight * .5f > TargetWidth * .5f / ScreenAspectRatio,
@@ -408,11 +408,11 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 VectorHVD(rect.position.x + rect.width, rect.position.y + rect.height, 0), // Top Right
                 VectorHVD(rect.position.x, rect.position.y + rect.height, 0) // Top Left
             };
-            
-            #if UNITY_EDITOR
+
+#if UNITY_EDITOR
             UnityEditor.Handles.DrawSolidRectangleWithOutline(rectangleCorners, fillColor, borderColor);
-            #endif
-            
+#endif
+
             return rectangleCorners;
         }
     }

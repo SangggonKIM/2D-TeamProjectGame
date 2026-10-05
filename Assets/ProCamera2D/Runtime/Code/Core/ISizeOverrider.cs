@@ -4,6 +4,6 @@
     {
         float OverrideSize(float deltaTime, float originalSize);
 
-        int SOOrder { get; set;}
+        int SOOrder { get; set; }
     }
 }

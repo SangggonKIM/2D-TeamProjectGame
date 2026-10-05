@@ -8,24 +8,24 @@ using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.FeedbacksForThirdParty
 {
-	/// <summary>
-	/// Add this feedback to play a continuous haptic of the specified amplitude and frequency over a certain duration. This feedback will also let you randomize these, and modulate them over time.
-	/// </summary>
-	[AddComponentMenu("")]
-	[System.Serializable]
-	#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    /// <summary>
+    /// Add this feedback to play a continuous haptic of the specified amplitude and frequency over a certain duration. This feedback will also let you randomize these, and modulate them over time.
+    /// </summary>
+    [AddComponentMenu("")]
+    [System.Serializable]
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 	[FeedbackPath("Haptics/Haptic Continuous")]
-	#endif
-	[MovedFrom(false, null, "MoreMountains.Feedbacks.NiceVibrations")]
-	[FeedbackHelp("Add this feedback to play a continuous haptic of the specified amplitude and frequency over a certain duration. This feedback will also let you randomize these, and modulate them over time.")]
-	public class MMF_NVContinuous : MMF_Feedback
-	{
-		#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+#endif
+    [MovedFrom(false, null, "MoreMountains.Feedbacks.NiceVibrations")]
+    [FeedbackHelp("Add this feedback to play a continuous haptic of the specified amplitude and frequency over a certain duration. This feedback will also let you randomize these, and modulate them over time.")]
+    public class MMF_NVContinuous : MMF_Feedback
+    {
+#if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 		/// a static bool used to disable all feedbacks of this type at once
 		public static bool FeedbackTypeAuthorized = true;
-		#if UNITY_EDITOR
+#if UNITY_EDITOR
 		public override Color FeedbackColor { get { return MMFeedbacksInspectorColors.HapticsColor; } }
-		#endif
+#endif
 		public override float FeedbackDuration { get { return ApplyTimeMultiplier(_duration); } set { _duration = value; } }
         
 		[MMFInspectorGroup("Haptic Amplitude", true, 31)]
@@ -148,8 +148,8 @@ namespace MoreMountains.FeedbacksForThirdParty
 				_coroutine = null;
 			}
 		}
-		#else
-		protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f) { }
-		#endif
-	}    
+#else
+        protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f) { }
+#endif
+    }
 }

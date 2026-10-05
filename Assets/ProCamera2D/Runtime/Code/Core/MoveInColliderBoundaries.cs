@@ -120,7 +120,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
             Vector3 rayOrigin = VectorHV(Vector3H(CameraTransform.localPosition), Vector3V(CameraTransform.localPosition));
             Vector3 rayDirection = (rayTargetPos - rayOrigin).normalized;
             float raySize = (rayTargetPos - rayOrigin).magnitude + .01f + .5f;
-            
+
             DrawRay(rayOrigin, rayDirection * raySize, Color.yellow);
 
             if (Physics.Raycast(rayOrigin, rayDirection, out _raycastHit, raySize, CameraCollisionMask))
@@ -172,7 +172,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
                 rayDirection = isPositiveDirection ? CameraTransform.up : -CameraTransform.up;
                 initialRayOrigin = isPositiveDirection ? _raycastOrigins.TopLeft : _raycastOrigins.BottomLeft;
             }
-            
+
             float raycastHitPos = Mathf.NegativeInfinity;
             bool hasRayHit = false;
             var totalRays = isHorizontal ? TotalHorizontalRays : TotalVerticalRays;
@@ -190,7 +190,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                     if ((isPositiveDirection && _cameraCollisionState.VTopRight && i == totalRays - 1) ||
                         (!isPositiveDirection && _cameraCollisionState.VTopLeft && i == totalRays - 1))
-                        rayV -= Offset;    
+                        rayV -= Offset;
                 }
                 else
                 {
@@ -200,9 +200,9 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                     if ((isPositiveDirection && _cameraCollisionState.HTopRight && i == totalRays - 1) ||
                         (!isPositiveDirection && _cameraCollisionState.HBottomRight && i == totalRays - 1))
-                        rayH -= Offset;    
+                        rayH -= Offset;
                 }
-                
+
                 Vector3 ray = VectorHV(rayH, rayV);
 
                 // Raycast
@@ -222,7 +222,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
 
                     hasRayHit = true;
 
-                    deltaMovement = isHorizontal ? Vector3H(_raycastHit.point) - Vector3H(ray) + (isPositiveDirection ? -RaySizeCompensation : RaySizeCompensation) : 
+                    deltaMovement = isHorizontal ? Vector3H(_raycastHit.point) - Vector3H(ray) + (isPositiveDirection ? -RaySizeCompensation : RaySizeCompensation) :
                                                     Vector3V(_raycastHit.point) - Vector3V(ray) + (isPositiveDirection ? -RaySizeCompensation : RaySizeCompensation);
 
                     raycastHitPos = isHorizontal ? Vector3H(_raycastHit.point) : Vector3V(_raycastHit.point);

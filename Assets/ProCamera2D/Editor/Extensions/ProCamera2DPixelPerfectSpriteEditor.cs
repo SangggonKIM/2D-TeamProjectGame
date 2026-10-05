@@ -13,7 +13,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         void OnEnable()
         {
             var proCamera2DPixelPerfectSprite = (ProCamera2DPixelPerfectSprite)target;
-            
+
             _script = MonoScript.FromMonoBehaviour(proCamera2DPixelPerfectSprite);
         }
 

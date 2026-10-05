@@ -28,7 +28,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             base.OnDestroy();
 
-            if(ProCamera2D)
+            if (ProCamera2D)
                 ProCamera2D.RemovePositionDeltaChanger(this);
         }
 
@@ -38,7 +38,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (!enabled)
                 return originalDelta;
-            
+
             MoveInColliderBoundaries.CameraSize = ProCamera2D.ScreenSizeInWorldCoordinates;
 
             // Apply movement considering the collider boundaries

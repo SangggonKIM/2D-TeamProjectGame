@@ -14,7 +14,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             _script = MonoScript.FromMonoBehaviour((ProCamera2DRepeater)target);
         }
 
@@ -22,7 +22,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D
         {
             if (target == null)
                 return;
-            
+
             var proCamera2DRepeater = (ProCamera2DRepeater)target;
 
             serializedObject.Update();

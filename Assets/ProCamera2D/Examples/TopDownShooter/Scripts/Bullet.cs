@@ -41,7 +41,7 @@ namespace Com.LuisPedroFonseca.ProCamera2D.TopDownShooter
             _lastPos = _transform.position;
             _transform.Translate(Vector3.right * BulletSpeed * Time.deltaTime);
 
-            if(Physics.Raycast(_lastPos, _transform.position - _lastPos, out _raycastHit, (_lastPos - _transform.position).magnitude + SkinWidth, CollisionMask))
+            if (Physics.Raycast(_lastPos, _transform.position - _lastPos, out _raycastHit, (_lastPos - _transform.position).magnitude + SkinWidth, CollisionMask))
             {
                 _collisionPoint = _raycastHit.point;
 
